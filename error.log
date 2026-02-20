@@ -1,0 +1,19 @@
+[\xHarbour.com\xHarbour-xBuild\xbuild.prg->MAIN] (518)
+Type: C >>>M->__ValToPrg_Object := ERROR():New()
+   M->__ValToPrg_Object:PROCNAME := "LOADPROJECT"
+   M->__ValToPrg_Object:PROCLINE :=       3065
+   M->__ValToPrg_Object:MODULENAME := "\xHarbour.com\xHarbour-xBuild\tproject.prg"
+   M->__ValToPrg_Object:AASTACK := Array(2)
+      M->__ValToPrg_Object:AASTACK[1] := Array(3)
+         M->__ValToPrg_Object:AASTACK[1][1] := "\xHarbour.com\xHarbour-xBuild\tproject.prg"
+         M->__ValToPrg_Object:AASTACK[1][2] := "LOADPROJECT"
+         M->__ValToPrg_Object:AASTACK[1][3] :=       3065
+
+      M->__ValToPrg_Object:AASTACK[2] := Array(3)
+         M->__ValToPrg_Object:AASTACK[2][1] := "\xHarbour.com\xHarbour-xBuild\xbuild.prg"
+         M->__ValToPrg_Object:AASTACK[2][2] := "MAIN"
+         M->__ValToPrg_Object:AASTACK[2][3] :=        504
+
+
+<<<
+

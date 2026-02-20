@@ -1,0 +1,103 @@
+body{
+    background-color: white;
+    color: #000;
+}
+table, th, td{
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+table{
+    width: 100%;
+}
+article,table,tr,td{
+    border: 1px gray;
+}
+
+th{
+    text-align: left;
+    color: white;
+    background-color: rgb(119, 121, 123);
+}
+.conteudo{
+    text-align: left;
+}
+
+h3{
+    text-align: center;
+}
+
+/* espaço entre a borda e o conteúdo de uma tabela */
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+ 
+h4 {
+  text-align: left;
+}
+
+/* divisores horizontais */
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+
+
+/* teste juliano */
+.form {
+    display: flex;
+    width: 100%;
+    background-color: black;
+    color: #CCC;
+  }
+  
+  .form .section {
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .form .section .control-group {
+    margin-top: 5px;
+  }
+  
+  .form .section .control-group .control {
+    width: 100%;
+  }
+    
+  .form .section .control-group .control-label {
+    display: block;
+    width: 100%;
+    margin-bottom: 4px;
+    color:cornflowerblue;
+    font-size: 20px;
+  }
+    
+  .form .section .control-group .dados-label {
+    display: block;
+    width: 100%;
+    margin-bottom: 4px;
+    color:white;
+    font-size: 15px;
+  }
+
+  .main .imprimir {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    border: 0;
+    padding: 10px 20px;
+    background: #ccc;
+    border-radius: 30px;
+    font-size: 14px;
+    color: #fff;
+    background: #22415d;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  @media print {
+    .imprimir {
+      display: none;
+    }
+  }
+    

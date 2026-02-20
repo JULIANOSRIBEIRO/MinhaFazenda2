@@ -5667,6 +5667,87 @@ DllUnload( nDll )
 
 return .t.
 
+
+*******************
+Function help_CATEG
+*******************
+private WAREA := alias()
+private WVAR  := readvar()
+private WCOR  := setcolor()
+
+select CATEG
+ordsetfocus("SINC002")
+
+BRW_HELP("CATEGORIA",.t., {;
+{"CODIGO","999","Codigo"   },;
+{"NOME"  ,""   ,"Categoria"}})
+
+select &WAREA
+setcolor(WCOR)
+
+return .f.
+
+
+*********************
+Function help_GRUPO_P
+*********************
+private WAREA := alias()
+private WVAR  := readvar()
+private WCOR  := setcolor()
+
+select GRUPO_P
+ordsetfocus("SINC002")
+
+BRW_HELP("GRUPOS DE ANIMAIS",.t., {;
+{"CODIGO","999","Codigo"   },;
+{"NOME"  ,""   ,"Categoria"}})
+ 
+select &WAREA
+setcolor(WCOR)
+
+return .f.
+
+
+*********************
+Function help_SUB_GRP
+*********************
+private WAREA := alias()
+private WVAR  := readvar()
+private WCOR  := setcolor()
+
+select SUB_GRP 
+ordsetfocus("SINC002")
+
+BRW_HELP("SUB-GRUPOS DE ANIMAIS",.t., {;
+{"CODIGO","999","Codigo"   },;
+{"NOME"  ,""   ,"Categoria"}})
+ 
+select &WAREA
+setcolor(WCOR)
+
+return .f.
+
+
+*********************
+Function help_PENDENC
+*********************
+private WAREA := alias()
+private WVAR  := readvar()
+private WCOR  := setcolor()
+
+select PENDENC
+ordsetfocus("SINC002")
+
+BRW_HELP("PENDENCIAS",.t., {;
+{"CODIGO","999","Codigo"   },;
+{"NOME"  ,""   ,"Pendencia"}})
+ 
+select &WAREA
+setcolor(WCOR)
+
+return .f.
+
+
 ********************
 Function help_CCUSTO
 ********************
@@ -5681,16 +5762,11 @@ BRW_HELP("CENTROS DE CUSTO",.t., {;
 {"CODIGO","999","Codigo"         },;
 {"NOME"  ,""   ,"Centro de Custo"}})
  
-if lastkey() = 13
-   if Valtype(&WVAR) = "N" 
-      &WVAR = CODIGO
-   endif
-endif
-
 select &WAREA
 setcolor(WCOR)
 
 return .f.
+
 
 ********************
 function help_CIDADE
@@ -5762,12 +5838,6 @@ BRW_HELP("GRUPOS DE PRODUTOS",.t., {;
 {"CODIGO","" ,"Codigo" },;
 {"GRUPO" ,"" ,"Grupo"  }})
  
-if lastkey() == 13
-   if Valtype(&WVAR) = "C" 
-      &WVAR = CODIGO
-   endif
-endif
-
 select &WAREA
 setcolor(WCOR)
 
@@ -5791,12 +5861,6 @@ BRW_HELP("PRODUTOS",.t., {;
 {"((SDANT + AQUIS) - BAIXAS)","99999"         ,"Saldo"   },;
 {"CUSTO"                     ,"@R@E 9999.9999","Custo"   }})
  
-if lastkey() == 13
-   if Valtype(&WVAR) = "C" 
-      &WVAR = CODIGO
-   endif
-endif
-
 select &WAREA
 setcolor(WCOR)
 
@@ -5818,12 +5882,6 @@ BRW_HELP("PLANTEL",.t., {;
 {"PELAGEM",""         ,"Pelagem"},;
 {"ENTRADA",""         ,"Entrada"}})
  
-if lastkey() == 13
-   if Valtype(&WVAR) = "C" 
-      &WVAR = BRINCO
-   endif
-endif
-
 select &WAREA
 setcolor(WCOR)
 
@@ -5843,12 +5901,6 @@ BRW_HELP("RA"+chr(128)+"AS",.t., {;
 {"CODIGO","999","Codigo" },;
 {"NOME"  ,""   ,"Ra"+chr(135)+"a"  }})
  
-if lastkey() == 13
-   if Valtype(&WVAR) = "N" 
-      &WVAR = CODIGO
-   endif
-endif
-
 select &WAREA
 setcolor(WCOR)
 
@@ -5868,12 +5920,6 @@ BRW_HELP("LOTES",.t., {;
 {"CODIGO","999","Codigo"},;
 {"NOME"  ,""   ,"Lote"  }})
  
-if lastkey() == 13
-   if Valtype(&WVAR) = "N" 
-      &WVAR = CODIGO
-   endif
-endif
-
 select &WAREA
 setcolor(WCOR)
 
@@ -5893,12 +5939,6 @@ BRW_HELP("PASTOS",.t., {;
 {"CODIGO","999","Codigo"},;
 {"NOME"  ,""   ,"Pasto" }})
  
-if lastkey() == 13
-   if Valtype(&WVAR) = "N" 
-      &WVAR = CODIGO
-   endif
-endif
-
 select &WAREA
 setcolor(WCOR)
 
@@ -5927,12 +5967,6 @@ BRW_HELP("PLANTEL",.t., {;
 {"SAIDA"       ,""        ,"Saida"     },;
 {"MOTIVO"      ,""        ,"Motivo"    }})
  
-if lastkey() == 13
-   if Valtype(&WVAR) = "C" 
-      &WVAR = BRINCO
-   endif
-endif
-
 select &WAREA
 setcolor(WCOR)
 
@@ -6006,12 +6040,6 @@ BRW_HELP("VACINAS",.t., {;
 {"NOME"    ,""           ,"Vacina"},;
 {"FREQUENC","@R 9999dias","Frequ"+chr(136)+"ncia"}})
  
-if lastkey() == 13
-   if Valtype(&WVAR) = "N" 
-      &WVAR = CODIGO
-   endif
-endif
-
 select &WAREA
 setcolor(WCOR)
 
@@ -6030,12 +6058,6 @@ ordsetfocus("SINC002")
 BRW_HELP("DOEN"+chr(128)+"AS/SINTOMAS/TRATAMENTOS",.t., {;
 {"CODIGO"  ,"999","C"+chr(162)+"digo"},;
 {"NOME"    ,""   ,"Decri"+chr(135)+chr(132)+"o"}})
- 
-if lastkey() == 13
-   if Valtype(&WVAR) = "N" 
-      &WVAR = CODIGO
-   endif
-endif
 
 select &WAREA
 setcolor(WCOR)
