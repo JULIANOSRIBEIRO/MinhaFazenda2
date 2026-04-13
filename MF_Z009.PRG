@@ -13,29 +13,28 @@ function sc_PLANTEL(WACT)
 *************************
 LOCAL W
 
-setcolor(COR_TEXT)
-@ 00,00 clear to 22,79
-@ 24,00 clear to 24,79
-
-setcolor(COR_CONS)
-@ 00,00 clear to 00,79
-@ 00,26 say "FICHA INDIVIDUAL DO ANIMAL"
-
-setcolor(COR_TEXT)
-
-@ 01,01 say "Brinco.......:                                   Registro..:" 
-@ 02,01 say "Nome.........:"
-@ 03,01 say "Nascimento...:                                   Idade.....:"      
-@ 04,01 say "Ra"+chr(135)+"a.........:    -                              Sexo......:" 
-@ 05,01 say "Cor Pelagem..:                                   Brinco M"+chr(132)+"e:"                                  
-@ 06,01 say "Lote.........:    -"
-@ 07,01 say "Pasto/Piquete:    -"  
-
-setcolor(COR_SUB)
-@ 08,01 to 08,78
-setcolor(COR_TEXT)
-
 if WACT == 1
+   setcolor(COR_TEXT)
+   @ 00,00 clear to 22,79
+   @ 24,00 clear to 24,79
+   
+   setcolor(COR_CONS)
+   @ 00,00 clear to 00,79
+   @ 00,26 say "FICHA INDIVIDUAL DO ANIMAL"
+   
+   setcolor(COR_TEXT)
+   
+   @ 01,01 say "Brinco.......:                                   Registro..:" 
+   @ 02,01 say "Nome.........:"
+   @ 03,01 say "Nascimento...:                                   Idade.....:"      
+   @ 04,01 say "Ra"+chr(135)+"a.........:    -                              Sexo......:" 
+   @ 05,01 say "Cor Pelagem..:                                   Brinco M"+chr(132)+"e:"                                  
+   @ 06,01 say "Lote.........:    -"
+   @ 07,01 say "Pasto/Piquete:    -"  
+   
+   setcolor(COR_SUB)
+   @ 08,01 to 08,78
+   setcolor(COR_TEXT)
 
    @ 09,01 say "Categoria....:    -" 
    @ 10,01 say "Grupo........:    -"
@@ -106,14 +105,14 @@ do while .t.
 
    // dados de entrada da 1a tela 
 
-   WBRINCO     = space(08)
+   WBRINCO     = space(15)
    WREGISTRO   = space(15)
-   WNOME       = space(35) 
+   WNOME       = space(50) 
    WNASC       = ctod(space(08))
    WRACA       = 0 
-   WSEXO       = space(01)
+   WSEXO       = space(05)
    WPELAGEM    = space(20)
-   WBRINCO_MAE = space(08)
+   WBRINCO_MAE = space(15)
    WLOTE       = 0
    WPASTO      = 0
    WCATEG      = 0 
@@ -151,48 +150,65 @@ do while .t.
    WOBS3       = space(60)
    WOBS4       = space(60)
 
+   SET CENTURY ON 
+
    do while .t.
 
       sc_PLANTEL(1)
 
       setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
-      @ 01,16 get WBRINCO     picture "99999999"                                 valid busca_NBRINCO()
-      @ 01,62 get WREGISTRO
-      @ 02,16 get WNOME       picture "@!"
+      @ 01,16 get WBRINCO     picture "@!"                                       valid busca_NBRINCO()
+      @ 01,62 get WREGISTRO   picture "@!"
+      @ 02,16 get WNOME       picture "@!"                            
+
       @ 03,16 get WNASC                                                          valid calc_IDADE()  
       @ 04,16 get WRACA       picture "@Z 999"                                   valid busca_RACA(04,20)
-      @ 04,62 get WSEXO       picture "!"                                        valid busca_SEXO()
-      @ 05,16 get WPELAGEM 
-      @ 05,62 get WBRINCO_MAE picture "99999999"                                 valid busca_MAE()
+      
+      @ 04,62,08,69 get WSEXO;                                  
+         LISTBOX {"Macho", "Femea"};
+         DROPDOWN SCROLLBAR;
+         COLOR COR_TEXT+","+COR_TEXT+","+COR_TEXT+","+COR_GETS+","+COR_DEST+",N/W,R/B,"+COR_TEXT;
+         MESSAGE "pressione BARRA DE ESPA"+chr(128)+"O para listar as op"+chr(135)+chr(148)+"es v"+chr(160)+"lidas."; 
+         VALID ! empty(WSEXO)
+
+      @ 05,16,13,36 get WPELAGEM;   
+         LISTBOX {"Branca              ", "Preta               ", "Malhada             ", "Castanha            ", "Marrom              ", "Outra               "};
+         DROPDOWN SCROLLBAR;
+         COLOR COR_TEXT+","+COR_TEXT+","+COR_TEXT+","+COR_GETS+","+COR_DEST+",N/W,R/B,"+COR_TEXT;
+         MESSAGE "pressione BARRA DE ESPA"+chr(128)+"O para listar as cores v"+chr(160)+"lidas."; 
+         VALID ! empty(WPELAGEM)
+     
+      @ 05,62 get WBRINCO_MAE picture "@!"                                       valid busca_MAE()
       @ 06,16 get WLOTE       picture "@Z 999"                                   valid busca_LOTE()
       @ 07,16 get WPASTO      picture "@Z 999"                                   valid busca_PASTO()
  
-      @ 09,16 get WCATEG      picture "@Z 999"                                   valid busca_CATEG()      
+      @ 09,16 get WCATEG      picture "@Z 999"                                   valid busca_CATEG()    
       @ 10,16 get WGRUPO      picture "@Z 999"                                   valid busca_GRUPO()
       @ 11,16 get WSUB_GRP    picture "@Z 999"                                   valid busca_SUB_GRUPO()
       @ 12,16 get WPEND       picture "@Z 999"                                   valid busca_PEND()
-      
+     
       // Dados Familiares - Materno 
-      @ 16,06 get WDFM_NMAE   picture "@!"       // nome da mãe 
-      @ 16,44 get WDFM_RMAE   picture "@Z 999"   // raça da mãe 
-      @ 17,06 get WDFM_NAVO1  picture "@!"       // nome da avó 
-      @ 17,44 get WDFM_RAVO1  picture "@Z 999"   // raça da avó 
-      @ 18,06 get WDFM_NAVO2  picture "@!"       // nome do avô
-      @ 18,44 get WDFM_RAVO2  picture "@Z 999"   // raça do avô 
-
-      // Dados Familiares - Paterno  
-      @ 20,06 get WDFP_NPAI   picture "@!"       // nome do pai 
-      @ 20,44 get WDFP_RPAI   picture "@Z 999"   // raça do pai 
-      @ 21,06 get WDFP_NAVO1  picture "@!"       // nome da avó 
-      @ 21,44 get WDFP_RAVO1  picture "@Z 999"   // raça da avó 
-      @ 22,06 get WDFP_NAVO2  picture "@!"       // nome do avô
-      @ 22,44 get WDFP_RAVO2  picture "@Z 999"   // raça do avô    
+      @ 16,06 get WDFM_NMAE   picture "@!"                                       // nome da mãe 
+      @ 16,44 get WDFM_RMAE   picture "@Z 999"                                   when ! empty(WDFM_NMAE)  valid busca_RACA(16,48)   // raça da mãe 
+      @ 17,06 get WDFM_NAVO1  picture "@!"                                       // nome da avó 
+      @ 17,44 get WDFM_RAVO1  picture "@Z 999"                                   when ! empty(WDFM_NAVO1) valid busca_RACA(17,48)  // raça da avó 
+      @ 18,06 get WDFM_NAVO2  picture "@!"                                       // nome do avô
+      @ 18,44 get WDFM_RAVO2  picture "@Z 999"                                   when ! empty(WDFM_NAVO2) valid busca_RACA(18,48)  // raça do avô 
+ 
+      // Dados Familiares - Paterno                                  
+      @ 20,06 get WDFP_NPAI   picture "@!"                                       // nome do pai 
+      @ 20,44 get WDFP_RPAI   picture "@Z 999"                                   when ! empty(WDFP_NPAI)  valid busca_RACA(20,48)   // raça do pai 
+      @ 21,06 get WDFP_NAVO1  picture "@!"                                       // nome da avó 
+      @ 21,44 get WDFP_RAVO1  picture "@Z 999"                                   when ! empty(WDFP_NAVO1) valid busca_RACA(21,48)  // raça da avó 
+      @ 22,06 get WDFP_NAVO2  picture "@!"                                       // nome do avô
+      @ 22,44 get WDFP_RAVO2  picture "@Z 999"                                   when ! empty(WDFP_NAVO2) valid busca_RACA(22,48)  // raça do avô    
       read_f()
 
       if empty(WBRINCO) .or. lastkey() == 27
          restscreen(00,00,24,79,WBOX)
          setcolor(WCOR)
+         SET CENTURY OFF  
          return .t.
       endif
 
@@ -206,7 +222,7 @@ do while .t.
 
          sc_PLANTEL(2)
 
-         @ 10,16 get WENTRADA                       
+         @ 10,16 get WENTRADA                                                      valid empty(WENTRADA) .or. WENTRADA >= WNASC             
          @ 10,55 get WPESO       picture "@R@E 999.9"       when ! empty(WENTRADA)
          @ 11,16 get WDOC                                   when ! empty(WENTRADA)
          @ 11,55 get WVALOR      picture "@R@E 999,999.99"  when ! empty(WENTRADA)
@@ -215,7 +231,7 @@ do while .t.
          @ 14,16 get WSAIDA                                                         valid empty(WSAIDA) .or. WSAIDA >= WENTRADA                        
          
          @ 15,16,22,32 get WMOTIVO;   
-         LISTBOX {"Venda          ", "Transferencia  ", "Morte          ", "Doacao         "};
+         LISTBOX {"Venda          ", "Transferencia  ", "Morte          ", "Doacao         ", "Emprestimo     "};
          DROPDOWN SCROLLBAR;
          COLOR COR_TEXT+","+COR_TEXT+","+COR_TEXT+","+COR_GETS+","+COR_DEST+",N/W,R/B,"+COR_TEXT;
          WHEN ! EMPTY(WSAIDA);
@@ -272,8 +288,9 @@ do while .t.
          endif
          set deleted on
 
-         save_PLANTEL()
-
+         save_PLANTEL("INC")
+         MENSAGEM("Brinco: "+alltrim(WBRINCO)+";Inserido com Sucesso!",0)
+        
          exit
 
       endif
@@ -283,6 +300,7 @@ do while .t.
 enddo
 
 return .t.
+
 
 **********************
 function busca_NBRINCO
@@ -307,6 +325,7 @@ endif
 
 return .t.
 
+
 *******************
 function calc_IDADE
 *******************
@@ -316,57 +335,40 @@ if empty(WNASC) .or. lastkey() == 27
 endif
 
 WIDADE = round(((DATE() - WNASC) / 30),1)
-@ 03,62 say WIDADE picture "@R@E 999.9 meses"
+@ 03,62 say WIDADE picture "@R 999.9 meses"
 
 return .t.
+
 
 *******************************
 function busca_RACA(WLIN, WCOL)
 *******************************
+PRIVATE WVAR := readvar()
 
 if lastkey() == 27
    return .t.
 endif
 
-if empty(WRACA)
+if empty(&WVAR)
    help_RACA()
    select RACA
-   WRACA = CODIGO
+   &WVAR = CODIGO
+   return .f.
 endif
 
 select RACA
 ordsetfocus("SINC001")
-seek WRACA
+seek &WVAR
 
 if ! found()
    MENSAGEM("C"+chr(162)+"digo de ra"+chr(135)+"a n"+chr(132)+"o cadastrado!",0)
    return .f.
 endif
 
-@ WLIN, WCOL say NOME
+@ WLIN,WCOL say NOME
 
 return .t.
 
-*******************
-function busca_SEXO
-*******************
-
-if lastkey() == 27
-   return .t.
-endif
-
-if ! (WSEXO $ "M-F")
-   MENSAGEM("Sexo v"+chr(160)+"lido: M-Macho ou F-F"+chr(136)+"mea")
-   return .f.
-endif
-
-if WSEXO = "M"
-   @ 04,62 say "Macho"
-else
-   @ 04,62 say "F"+chr(136)+"mea"
-endif 
-
-return .t.
 
 ******************
 function busca_MAE
@@ -394,7 +396,7 @@ if ! found()
    select PLANTEL
    ordsetfocus(WORD)
    go WREC
-   return .f.
+   return .t.
 endif
 
 if SEXO <> "F"
@@ -465,15 +467,59 @@ endif
 
 return .t.
 
+
 ********************
 function busca_CATEG
 ********************
 
+if lastkey() == 27
+   return .t.
+endif
+
+if empty(WCATEG)
+   help_CATEG()
+   select CATEG
+   WCATEG = CODIGO
+endif
+
+select CATEG
+ordsetfocus("SINC001")
+seek WCATEG
+
+if ! found()
+   MENSAGEM("C"+chr(162)+"digo de categoria n"+chr(132)+"o cadastrado!",0)
+   return .f.
+endif
+
+@ 09,20 say NOME
+
 return .t.
+
 
 ********************
 function busca_GRUPO 
 ********************
+
+if lastkey() == 27
+   return .t.
+endif
+
+if empty(WGRUPO)
+   help_GRUPO_P()
+   select GRUPO_P
+   WGRUPO = CODIGO
+endif
+
+select GRUPO_P
+ordsetfocus("SINC001")
+seek WGRUPO 
+
+if ! found()
+   MENSAGEM("C"+chr(162)+"digo de grupo n"+chr(132)+"o cadastrado!",0)
+   return .f.
+endif
+
+@ 10,20 say NOME
 
 return .t.
 
@@ -482,13 +528,57 @@ return .t.
 function busca_SUB_GRUPO
 ************************
 
+if lastkey() == 27
+   return .t.
+endif
+
+if empty(WSUB_GRP)
+   help_SUB_GRP()
+   select SUB_GRP 
+   WSUB_GRP = CODIGO
+endif
+
+select SUB_GRP
+ordsetfocus("SINC001")
+seek WSUB_GRP
+
+if ! found()
+   MENSAGEM("C"+chr(162)+"digo de sub-grupo n"+chr(132)+"o cadastrado!",0)
+   return .f.
+endif
+
+@ 11,20 say NOME
+
 return .t.
+
 
 *******************
 function busca_PEND 
 *******************
 
+if lastkey() == 27
+   return .t.
+endif
+
+if empty(WPEND)
+   help_PENDENC()
+   select PENDENC 
+   WPEND = CODIGO
+endif
+
+select PENDENC
+ordsetfocus("SINC001")
+seek WPEND
+
+if ! found()
+   MENSAGEM("C"+chr(162)+"digo de pend"+chr(136)+"ncia n"+chr(132)+"o cadastrado!",0)
+   return .f.
+endif
+
+@ 12,20 say NOME
+
 return .t. 
+
 
 ********************
 function ALT_PLANTEL
@@ -496,34 +586,28 @@ function ALT_PLANTEL
 LOCAL WBOX := savescreen(00,00,24,79)
 LOCAL WCOR := setcolor() 
 
+SET CENTURY ON 
+ 
 do while .t.
-
-   WBRINCO = space(08)
+ 
+   WBRINCO = space(15)
 
    sc_PLANTEL(1)
 
    setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
-   @ 01,16 get WBRINCO picture "99999999" valid busca5_BRINCO()
+   @ 01,16 get WBRINCO picture "@!" valid busca5_BRINCO()
    read_f()
 
    if empty(WBRINCO) .or. lastkey() == 27
       restscreen(00,00,24,79,WBOX)
       setcolor(WCOR)
+      SET CENTURY OFF
       return .t.
    endif
 
    select PLANTEL 
-   ordsetfocus("SINC001")
-   seek WBRINCO 
-
-   if ! found()
-      MENSAGEM("AVISO!;N"+chr(163)+"mero de brinco n"+chr(132)+"o cadastrado!",0)
-      loop
-   endif
-
-   exibe_DADOS_PLANTEL(1)
-   
+    
    WREGISTRO   = REGISTRO  
    WNOME       = NOME      
    WNASC       = NASC      
@@ -569,47 +653,63 @@ do while .t.
    WOBS4       = OBS4    
     
    do while .t.
-
+     
       sc_PLANTEL(1)
+      exibe_DADOS_PLANTEL(1)
 
       setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
-      @ 01,16 say WBRINCO     picture "99999999"      
+      @ 01,16 say WBRINCO     picture "@!"                                 
       @ 01,62 get WREGISTRO
-      @ 02,16 get WNOME       picture "@!"
+      @ 02,16 get WNOME       picture "@!"                            
+
       @ 03,16 get WNASC                                                          valid calc_IDADE()  
       @ 04,16 get WRACA       picture "@Z 999"                                   valid busca_RACA(04,20)
-      @ 04,62 get WSEXO       picture "!"                                        valid busca_SEXO()
-      @ 05,16 get WPELAGEM 
-      @ 05,62 get WBRINCO_MAE picture "99999999"                                 valid busca_MAE()
+      
+      @ 04,62,08,69 get WSEXO;                                  
+         LISTBOX {"Macho", "Femea"};
+         DROPDOWN SCROLLBAR;
+         COLOR COR_TEXT+","+COR_TEXT+","+COR_TEXT+","+COR_GETS+","+COR_DEST+",N/W,R/B,"+COR_TEXT;
+         MESSAGE "pressione BARRA DE ESPA"+chr(128)+"O para listar as op"+chr(135)+chr(148)+"es v"+chr(160)+"lidas."; 
+         VALID ! empty(WSEXO)
+
+      @ 05,16,13,36 get WPELAGEM;   
+         LISTBOX {"Branca              ", "Preta               ", "Malhada             ", "Castanha            ", "Marrom              ", "Outra               "};
+         DROPDOWN SCROLLBAR;
+         COLOR COR_TEXT+","+COR_TEXT+","+COR_TEXT+","+COR_GETS+","+COR_DEST+",N/W,R/B,"+COR_TEXT;
+         MESSAGE "pressione BARRA DE ESPA"+chr(128)+"O para listar as cores v"+chr(160)+"lidas."; 
+         VALID ! empty(WPELAGEM)
+     
+      @ 05,62 get WBRINCO_MAE picture "@!"                                       valid busca_MAE()
       @ 06,16 get WLOTE       picture "@Z 999"                                   valid busca_LOTE()
       @ 07,16 get WPASTO      picture "@Z 999"                                   valid busca_PASTO()
  
-      @ 09,16 get WCATEG      picture "@Z 999"                                   valid busca_CATEG()      
+      @ 09,16 get WCATEG      picture "@Z 999"                                   valid busca_CATEG()    
       @ 10,16 get WGRUPO      picture "@Z 999"                                   valid busca_GRUPO()
       @ 11,16 get WSUB_GRP    picture "@Z 999"                                   valid busca_SUB_GRUPO()
       @ 12,16 get WPEND       picture "@Z 999"                                   valid busca_PEND()
-      
+     
       // Dados Familiares - Materno 
-      @ 16,06 get WDFM_NMAE   picture "@!"       // nome da mãe 
-      @ 16,44 get WDFM_RMAE   picture "@Z 999"   // raça da mãe 
-      @ 17,06 get WDFM_NAVO1  picture "@!"       // nome da avó 
-      @ 17,44 get WDFM_RAVO1  picture "@Z 999"   // raça da avó 
-      @ 18,06 get WDFM_NAVO2  picture "@!"       // nome do avô
-      @ 18,44 get WDFM_RAVO2  picture "@Z 999"   // raça do avô 
-
-      // Dados Familiares - Paterno  
-      @ 20,06 get WDFP_NPAI   picture "@!"       // nome do pai 
-      @ 20,44 get WDFP_RPAI   picture "@Z 999"   // raça do pai 
-      @ 21,06 get WDFP_NAVO1  picture "@!"       // nome da avó 
-      @ 21,44 get WDFP_RAVO1  picture "@Z 999"   // raça da avó 
-      @ 22,06 get WDFP_NAVO2  picture "@!"       // nome do avô
-      @ 22,44 get WDFP_RAVO2  picture "@Z 999"   // raça do avô    
+      @ 16,06 get WDFM_NMAE   picture "@!"                                       // nome da mãe 
+      @ 16,44 get WDFM_RMAE   picture "@Z 999"                                   when ! empty(WDFM_NMAE)  valid busca_RACA(16,48)   // raça da mãe 
+      @ 17,06 get WDFM_NAVO1  picture "@!"                                       // nome da avó 
+      @ 17,44 get WDFM_RAVO1  picture "@Z 999"                                   when ! empty(WDFM_NAVO1) valid busca_RACA(17,48)  // raça da avó 
+      @ 18,06 get WDFM_NAVO2  picture "@!"                                       // nome do avô
+      @ 18,44 get WDFM_RAVO2  picture "@Z 999"                                   when ! empty(WDFM_NAVO2) valid busca_RACA(18,48)  // raça do avô 
+ 
+      // Dados Familiares - Paterno                                  
+      @ 20,06 get WDFP_NPAI   picture "@!"                                       // nome do pai 
+      @ 20,44 get WDFP_RPAI   picture "@Z 999"                                   when ! empty(WDFP_NPAI)  valid busca_RACA(20,48)   // raça do pai 
+      @ 21,06 get WDFP_NAVO1  picture "@!"                                       // nome da avó 
+      @ 21,44 get WDFP_RAVO1  picture "@Z 999"                                   when ! empty(WDFP_NAVO1) valid busca_RACA(21,48)  // raça da avó 
+      @ 22,06 get WDFP_NAVO2  picture "@!"                                       // nome do avô
+      @ 22,44 get WDFP_RAVO2  picture "@Z 999"                                   when ! empty(WDFP_NAVO2) valid busca_RACA(22,48)  // raça do avô    
       read_f()
 
       if empty(WBRINCO) .or. lastkey() == 27
          restscreen(00,00,24,79,WBOX)
          setcolor(WCOR)
+         SET CENTURY OFF  
          return .t.
       endif
 
@@ -623,7 +723,7 @@ do while .t.
 
          sc_PLANTEL(2)
 
-         @ 10,16 get WENTRADA                       
+         @ 10,16 get WENTRADA                                                      valid empty(WENTRADA) .or. WENTRADA >= WNASC             
          @ 10,55 get WPESO       picture "@R@E 999.9"       when ! empty(WENTRADA)
          @ 11,16 get WDOC                                   when ! empty(WENTRADA)
          @ 11,55 get WVALOR      picture "@R@E 999,999.99"  when ! empty(WENTRADA)
@@ -632,7 +732,7 @@ do while .t.
          @ 14,16 get WSAIDA                                                         valid empty(WSAIDA) .or. WSAIDA >= WENTRADA                        
          
          @ 15,16,22,32 get WMOTIVO;   
-         LISTBOX {"Venda          ", "Transferencia  ", "Morte          ", "Doacao         "};
+         LISTBOX {"Venda          ", "Transferencia  ", "Morte          ", "Doacao         ", "Emprestimo     "};
          DROPDOWN SCROLLBAR;
          COLOR COR_TEXT+","+COR_TEXT+","+COR_TEXT+","+COR_GETS+","+COR_DEST+",N/W,R/B,"+COR_TEXT;
          WHEN ! EMPTY(WSAIDA);
@@ -677,7 +777,8 @@ do while .t.
             loop
          endif
 
-         save_PLANTEL()
+         save_PLANTEL("ALT")
+         MENSAGEM("Brinco: "+alltrim(WBRINCO)+";Alterado com Sucesso!",0)
 
          exit
       endif
@@ -687,6 +788,7 @@ do while .t.
 enddo
 
 return .t.
+
 
 **********************
 function busca5_BRINCO
@@ -698,6 +800,8 @@ endif
 
 if empty(WBRINCO)
    help_BRINCO()
+   select PLANTEL
+   WBRINCO = BRINCO
    return .f.
 endif
 
@@ -706,11 +810,12 @@ ordsetfocus("SINC001")
 seek WBRINCO
 
 if ! found()
-   mensagem("AVISO!;N"+chr(163)+"mero de brinco n"+chr(132)+"o cadastrado no plantel.")
+   mensagem("AVISO!;N"+chr(163)+"mero de brinco n"+chr(132)+"o cadastrado no plantel.",0)
    return .f.
 endif
 
 return .t.
+
 
 ********************
 function CON_PLANTEL
@@ -721,30 +826,32 @@ LOCAL WOPC
 
 do while .t.
 
-   WOPC = 7
+   WOPC = 9
 
    sc_PLANTEL(1)
      
-   SOMBRA(07,14,17,67,8)
+   SOMBRA(05,14,17,67,8)
 
    setcolor(COR_CONS)
-   @ 06,12 clear to 16,66
-   @ 06,12 to 16,66 
+   @ 04,12 clear to 16,66
+   @ 04,12 to 16,66 
 
-   @ 07,14 say "Consulta a partir do inicio do arquivo..........[1]"
-   @ 08,14 say "Consulta a partir do final do arquivo...........[2]"
-   @ 09,14 say "Consulta a partir do brinco.....................[3]"
-   @ 10,14 say "Consulta a partir do registro...................[4]"
-   @ 11,14 say "Consulta a partir do brinco da mae..............[5]"
-   @ 12,14 say "Consulta a partir da data de entrada............[6]"
-   @ 13,14 say "Retorno ao menu principal.......................[7]"
+   @ 05,14 say "Consulta a partir do inicio do arquivo..........[1]"
+   @ 06,14 say "Consulta a partir do final do arquivo...........[2]"
+   @ 07,14 say "Consulta a partir do n"+chr(163)+"mero do brinco...........[3]"
+   @ 08,14 say "Consulta a partir do n"+chr(163)+"mero de registro.........[4]"
+   @ 09,14 say "Consulta a partir do nome do animal.............[5]"
+   @ 10,14 say "Consulta a partir do n"+chr(163)+"mero do brinco da m"+chr(132)+"e....[6]"
+   @ 11,14 say "Consulta a partir da data de entrada............[7]"
+   @ 12,14 say "Consulta a partir da data de saida..............[8]"
+   @ 13,14 say "Retorno ao menu principal.......................[9]"
 
    setcolor("W/N,W/N,,,W/N")
    @ 15,14 say "Escolha sua op"+chr(135)+chr(132)+"o...............................[ ]"
-   @ 15,63 get WOPC picture "9" range 1,7
+   @ 15,63 get WOPC picture "9" range 1,9
    read_f()
 
-   if WOPC == 7 .or. lastkey() == 27
+   if WOPC == 9 .or. lastkey() == 27
       setcolor(WCOR)
       restscreen(00,00,24,79,WBOX)
       return .t.
@@ -756,12 +863,12 @@ do while .t.
 
    setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
-   if WOPC = 1
+   if WOPC == 1
       select PLANTEL
       ordsetfocus("SINC001")
       go top 
 
-   elseif WOPC = 2
+   elseif WOPC == 2
       select PLANTEL
       ordsetfocus("SINC001")
       go bottom
@@ -770,13 +877,13 @@ do while .t.
          skip -1
       endif 
 
-   elseif WOPC = 3
+   elseif WOPC == 3
 
       do while .t.
 
-         WBRINCO = space(08)
+         WBRINCO = space(15)
   
-         @ 03,16 get WBRINCO picture "99999999" valid busca5_BRINCO()
+         @ 01,16 get WBRINCO picture "@!" valid busca5_BRINCO()
          read_f()
  
          if empty(WBRINCO) .or. lastkey() == 27
@@ -796,13 +903,13 @@ do while .t.
       exit
       enddo
 
-   elseif WOPC = 4
+   elseif WOPC == 4
 
       do while .t.
 
          WREGISTRO = space(15)
 
-         @ 03,62 get WREGISTRO                           
+         @ 01,62 get WREGISTRO picture "@!"                           
          read_f()           
 
          if empty(WREGISTRO) .or. lastkey() == 27
@@ -822,13 +929,32 @@ do while .t.
       exit
       enddo
 
-   elseif WOPC = 5
+   elseif WOPC == 5
+    
+      WNOME = space(50)
+
+      @ 02,16 get WNOME picture "@!"                           
+      read_f()           
+
+      if empty(WNOME) .or. lastkey() == 27
+         loop
+      endif
+
+      select PLANTEL 
+      ordsetfocus("SINC003")
+      seek upper(WNOME)
+       
+      if eof() 
+         skip -1
+      endif 
+
+   elseif WOPC == 6
  
       do while .t.
 
-         WBRINCO_MAE = space(08)
+         WBRINCO_MAE = space(15)
   
-         @ 06,62 get WBRINCO_MAE picture "99999999" 
+         @ 05,62 get WBRINCO_MAE picture "@!" 
          read_f()
  
          if empty(WBRINCO_MAE) .or. lastkey() == 27
@@ -837,7 +963,7 @@ do while .t.
          endif
    
          select PLANTEL
-         ordsetfocus("SINC003")
+         ordsetfocus("SINC004")
          seek WBRINCO_MAE
 
          if ! found()
@@ -848,122 +974,179 @@ do while .t.
       exit
       enddo
 
-   elseif WOPC = 6
+   elseif WOPC == 7
+ 
+      sc_PLANTEL(2)   
 
       WENTRADA = DATE()
 
-      @ 11,16 get WENTRADA                          
+      @ 10,16 get WENTRADA                          
       read_f()           
 
       if ! empty(WENTRADA) .or. lastkey() <> 27
-
          select PLANTEL
-         ordsetfocus("SINC004")
+         ordsetfocus("SINC005")
          seek WENTRADA 
         
          if eof()
             skip -1
          endif
-
       else
          WTRAVA = .t.
       endif
+
+   elseif WOPC == 7
+ 
+      sc_PLANTEL(2)   
+
+      WSAIDA = DATE()
+
+      @ 14,16 get WSAIDA                          
+      read_f()           
+
+      if ! empty(WSAIDA) .or. lastkey() <> 27
+         select PLANTEL
+         ordsetfocus("SINC006")
+         seek WENTRADA 
+        
+         if eof()
+            skip -1
+         endif
+      else
+         WTRAVA = .t.
+      endif
+
    endif
 
    if WTRAVA
       loop
    endif
 
+   WTL = 1
+
    do while .t.
+        
+      WNASC    = NASC 
+      WLOTE    = LOTE
+      WRACA    = RACA      
+      WPASTO   = PASTO     
+      WCATEG   = CATEG     
+      WGRUPO   = GRUPO     
+      WSUB_GRP = SUB_GRP   
+      WPEND    = PEND      
+   
+      // Dados Familiares - Materno 
+      WDFM_RMAE  = DFM_RMAE         // raça da mãe 
+      WDFM_RAVO1 = DFM_RAVO1        // raça da avó 
+      WDFM_RAVO2 = DFM_RAVO2        // raça do avô 
+   
+      // Dados Familiares - Paterno  
+      WDFP_RPAI  = DFP_RPAI         // raça do pai 
+      WDFP_RAVO1 = DFP_RAVO1        // raça da avó 
+      WDFP_RAVO2 = DFP_RAVO2        // raça do avô 
+
+      exibe_DADOS_PLANTEL(WTL)
 
       setcolor(COR_TEXT)
-      CENTRO(24,"PgDw-Pr"+chr(162)+"ximo    PgUp-Anterior    I-Info    ESC-FIM")
-
-      exibe_DADOS_PLANTEL(1)
+      CENTRO(24,"PgDw/Pgup-Pr"+chr(162)+"ximo/Anterior   ENTER-Muda P"+chr(160)+"gina   H-Hist"+chr(162)+"rico   ESC-FIM")
 
       setcolor(COR_DEST)
 
-      if WOPC = 1
-         @ 03,00 say chr(175)   
-         @ 03,49 say space(01)      
-         @ 06,50 say space(01)     
-         @ 11,00 say space(01)  
-      elseif WOPC = 2
-         @ 03,00 say chr(175)      
-         @ 03,49 say space(01)      
-         @ 06,49 say space(01)     
-         @ 11,00 say space(01)  
-      elseif WOPC = 3
-         @ 03,00 say chr(175)      
-         @ 03,49 say space(01)      
-         @ 06,49 say space(01)     
-         @ 11,00 say space(01)  
+      if WOPC == 1 .or. WOPC == 2 .or. WOPC == 3
+         @ 01,00 say chr(175)   
+         @ 01,49 say space(01)   
+         @ 02,00 say space(01)   
+         @ 05,49 say space(01)  
+         
+         if WTL == 2   
+            @ 10,00 say space(01)  
+            @ 14,00 say space(01)
+         endif 
+
       elseif WOPC = 4
-         @ 03,49 say chr(175)      
-         @ 03,00 say space(01) 
-         @ 06,49 say space(01)     
-         @ 11,00 say space(01)  
-      elseif WOPC = 5
-         @ 06,49 say chr(175)      
-         @ 03,00 say space(01)   
-         @ 06,49 say space(01)     
-         @ 11,00 say space(01)  
-      elseif WOPC = 6
-         @ 11,00 say chr(175) 
-         @ 03,00 say space(01) 
-         @ 03,49 say space(01)      
-         @ 06,49 say space(01)     
+        
+         @ 01,00 say space(01)  
+         @ 01,49 say chr(175)    
+         @ 02,00 say space(01)
+         @ 05,49 say space(01)  
+         
+         if WTL == 2   
+            @ 10,00 say space(01)  
+            @ 14,00 say space(14)
+         endif 
+
+      elseif WOPC == 5
+        
+         @ 01,00 say space(01)  
+         @ 01,49 say space(01)    
+         @ 02,00 say chr(175)    
+         @ 05,49 say space(01)  
+         
+         if WTL == 2   
+            @ 10,00 say space(01)  
+            @ 14,00 say space(14)
+         endif 
+
+      elseif WOPC == 6
+         @ 01,00 say space(01)  
+         @ 01,49 say space(01)  
+         @ 02,00 say space(01)
+         @ 05,49 say chr(175)   
+         
+         if WTL == 2   
+            @ 10,00 say space(01)  
+            @ 14,00 say space(14)
+         endif 
+
+      elseif WOPC == 7
+         @ 01,00 say space(01)  
+         @ 01,49 say space(01)  
+         @ 02,00 say space(01)
+         @ 05,49 say space(01)
+         
+         if WTL == 2   
+            @ 10,00 say chr(175) 
+            @ 14,00 say space(01)
+         endif 
+      
+      elseif WOPC == 8
+         @ 01,00 say space(01)  
+         @ 01,49 say space(01)  
+         @ 02,00 say space(01)
+         @ 05,49 say space(01)
+         
+         if WTL == 2   
+            @ 10,00 say space(01)
+            @ 14,00 say chr(175) 
+         endif 
       endif
 
       setcolor(COR_TEXT)
 
-      inkey(0)
+      KEY = inkey(0)
 
-      if lastkey() == 03
+      if KEY == 03
          skip +1
          if eof()
             skip -1
          endif
-      elseif lastkey() == 18
+      elseif KEY == 18
          skip -1
-      elseif lastkey() == 27
+      elseif KEY == 27
          exit
-      elseif lastkey() == 73 .or. lastkey() == 105 
-         info_PLANTEL() 
-      elseif lastkey() == 7
-         @ 24,00 clear to 24,79
-         if CONFIRMA(24,"Excluir esse brinco do plantel...(S/N)?","N") == "N"
-            loop
+      elseif KEY == 13
+         WTL++ 
+         if WTL > 2
+            WTL = 1
          endif 
-         
-         if ! reglock()
-            loop
-         endif
-       
-         replace BRINCO     with space(08),;
-                 REGISTRO   with space(15),;
-                 NASC       with ctod(space(08)),;
-                 RACA       with 0,;
-                 SEXO       with space(01),;
-                 PELAGEM    with space(20),;
-                 BRINCO_MAE with space(08),;
-                 LOTE       with 0,;
-                 PASTO      with 0,;
-                 ENTRADA    with ctod(space(08)),;
-                 PESO       with 0,;
-                 DOC        with space(12),;
-                 VALOR      with 0,;
-                 SAIDA      with ctod(space(08)),;
-                 MOTIVO     with space(15),;
-                 OBS1       with space(60),;
-                 OBS2       with space(60),;
-                 OBS3       with space(60)
-         delete
-         grava()
+      elseif KEY == 72 .or. KEY == 104 
+         painelDeHistoricoDoPLANTEL(BRINCO) 
+      endif
 
-         MENSAGEM("AVISO!;Brinco exclu"+chr(161)+"do do plantel.")     
-         skip +1
-            
+      if ! KEYS()
+         @ 02,00 clear to 22,79
+         @ 24,00 clear to 24,79
+         exit
       endif
 
    enddo
@@ -972,28 +1155,28 @@ enddo
 
 return .t.
 
-*********************
-function info_PLANTEL
-*********************
-
-MENSAGEM("AVISO!;Nessa tela ser"+chr(160)+" exibido informa"+chr(135)+chr(148)+"es de peso/vacina"+chr(135)+chr(132)+"o.")
-
-return .t.
 
 ********************
 function EXC_PLANTEL
 ********************
+LOCAL WBOX := savescreen(00,00,24,79)
+LOCAL WCOR := setcolor() 
 
+SET CENTURY ON 
+ 
 do while .t.
 
-   sc_PLANTEL()
+   sc_PLANTEL(1)
 
-   WBRINCO = space(08)
+   WBRINCO = space(15)
   
-   @ 03,16 get WBRINCO picture "99999999" valid busca5_BRINCO()
+   @ 01,16 get WBRINCO picture "@!" valid busca5_BRINCO()
    read_f()
  
    if empty(WBRINCO) .or. lastkey() == 27
+      restscreen(00,00,24,79,WBOX)
+      setcolor(WCOR)
+      SET CENTURY OFF
       return .t.
    endif
    
@@ -1005,25 +1188,61 @@ do while .t.
       MENSAGEM("N"+chr(163)+"mero de brinco n"+chr(132)+"o cadastrado!",0)
       loop
    endif
-   
+
+   WNASC    = NASC 
+   WLOTE    = LOTE
+   WRACA    = RACA      
+   WPASTO   = PASTO     
+   WCATEG   = CATEG     
+   WGRUPO   = GRUPO     
+   WSUB_GRP = SUB_GRP   
+   WPEND    = PEND      
+
+   // Dados Familiares - Materno 
+   WDFM_RMAE  = DFM_RMAE         // raça da mãe 
+   WDFM_RAVO1 = DFM_RAVO1        // raça da avó 
+   WDFM_RAVO2 = DFM_RAVO2        // raça do avô 
+
+   // Dados Familiares - Paterno  
+   WDFP_RPAI  = DFP_RPAI         // raça do pai 
+   WDFP_RAVO1 = DFP_RAVO1        // raça da avó 
+   WDFP_RAVO2 = DFP_RAVO2        // raça do avô 
+
    exibe_DADOS_PLANTEL(1)
 
-   if CONFIRMA(24,"Excluir esse brinco do plantel...(S/N)?","N") = "S"
+   if CONFIRMA(24,"Excluir a ficha do aninmal do plantel...(S/N)?","N") = "S"
       select PLANTEL
  
       if ! reglock()
          loop
       endif
        
-      replace BRINCO     with space(08),;
+      replace BRINCO     with space(15),;
               REGISTRO   with space(15),;
+              NOME       with space(50),;
               NASC       with ctod(space(08)),;
               RACA       with 0,;
               SEXO       with space(01),;
               PELAGEM    with space(20),;
-              BRINCO_MAE with space(08),;
+              BRINCO_MAE with space(15),;
               LOTE       with 0,;
               PASTO      with 0,;
+              CATEG      with 0,;
+              GRUPO      with 0,; 
+              SUB_GRP    with 0,;
+              PEND       with 0,; 
+              DFM_NMAE   with space(35),;
+              DFM_RMAE   with 0,;
+              DFM_NAVO1  with space(35),;
+              DFM_RAVO1  with 0,;
+              DFM_NAVO2  with space(35),;
+              DFM_RAVO2  with 0,;
+              DFP_NPAI   with space(35),;
+              DFP_RPAI   with 0,;
+              DFP_NAVO1  with space(35),;
+              DFP_RAVO1  with 0,;
+              DFP_NAVO2  with space(35),;
+              DFP_RAVO2  with 0,;
               ENTRADA    with ctod(space(08)),;
               PESO       with 0,;
               DOC        with space(12),;
@@ -1032,30 +1251,72 @@ do while .t.
               MOTIVO     with space(15),;
               OBS1       with space(60),;
               OBS2       with space(60),;
-              OBS3       with space(60)
+              OBS3       with space(60),;
+              OBS4       with space(60),;
+              USER_INC   with space(20),;
+              DATE_INC   with ctod(space(08)),;
+              TIME_INC   with space(08),;
+              USER_ALT   with space(20),;
+              DATE_ALT   with ctod(space(08)),;
+              TIME_ALT   with space(08),; 
+              USER_BX    with space(20),;
+              DATE_BX    with ctod(space(08)),;
+              TIME_BX    with space(08),;
+              USER_CAN   with space(20),;
+              DATE_CAN   with ctod(space(08)),;
+              TIME_CAN   with space(08)      
       delete
       grava()        
-             
+          
+      MENSAGEM("AVISO!;A ficha do animal foi exclu"+chr(161)+"do com sucesso!",0)
    endif 
 
 enddo
 
 return .t.
 
+
 **********************************
 function exibe_DADOS_PLANTEL(WACT)
 **********************************
+SET CENTURY ON 
 
-@ 01,16 say BRINCO     picture "99999999"                                  
+sc_PLANTEL(WACT)
+
+select PLANTEL 
+
+@ 01,16 say BRINCO        picture "@!"                                  
 @ 01,62 say REGISTRO
-@ 02,16 say NOME       picture "@!"
+@ 02,16 say NOME          picture "@!"
 @ 03,16 say NASC                                                           
-@ 04,16 say RACA       picture "@Z 999"                                    
-@ 04,62 say SEXO       picture "!"                                        
+@ 04,16 say RACA          picture "@Z 999"          
+  
+select RACA
+ordsetfocus("SINC001")
+seek WRACA
+   
+if found()
+   @ 04,20 say NOME
+else 
+   @ 04,20 say space(30) 
+endif
+   
+select PLANTEL 
+
+@ 04,62 say SEXO          picture "!"      
+
+if SEXO == "M"
+   @ 04,62 say "Macho"
+elseif SEXO == "F"
+   @ 04,62 say "F"+chr(136)+"mea"
+else 
+   @ 04,62 say "N/D  "
+endif 
+
 @ 05,16 say PELAGEM 
-@ 05,62 say BRINCO_MAE picture "99999999"                                  
-@ 06,16 say LOTE       picture "@Z 999"                                   
-@ 07,16 say PASTO      picture "@Z 999"                                    
+@ 05,62 say BRINCO_MAE    picture "@!"                                  
+@ 06,16 say LOTE          picture "@Z 999"                                   
+@ 07,16 say PASTO         picture "@Z 999"                                    
 
 if WACT == 1
    @ 09,16 say CATEG      picture "@Z 999"                                          
@@ -1071,6 +1332,34 @@ if WACT == 1
    @ 18,06 say DFM_NAVO2  picture "@!"       // nome do avô
    @ 18,44 say DFM_RAVO2  picture "@Z 999"   // raça do avô 
    
+   select RACA
+   ordsetfocus("SINC001")
+   seek WDFM_RMAE
+
+   if found()
+      @ 16,48 say NOME
+   else 
+      @ 16,48 say space(30) 
+   endif
+
+   seek WDFM_RAVO1
+
+   if found()
+      @ 17,48 say NOME
+   else 
+      @ 17,48 say space(30) 
+   endif
+
+   seek WDFM_RAVO2
+
+   if found()
+      @ 18,48 say NOME
+   else 
+      @ 18,48 say space(30) 
+   endif
+
+   select PLANTEL 
+
    // Dados Familiares - Paterno  
    @ 20,06 say DFP_NPAI   picture "@!"       // nome do pai 
    @ 20,44 say DFP_RPAI   picture "@Z 999"   // raça do pai 
@@ -1078,32 +1367,36 @@ if WACT == 1
    @ 21,44 say DFP_RAVO1  picture "@Z 999"   // raça da avó 
    @ 22,06 say DFP_NAVO2  picture "@!"       // nome do avô
    @ 22,44 say DFP_RAVO2  picture "@Z 999"   // raça do avô    
-   
-   WNASC  = NASC 
-   WRACA  = RACA
-   WSEXO  = SEXO 
-   WLOTE  = LOTE 
-   WPASTO = PASTO 
-   
-   calc_IDADE()
-   
+     
    select RACA
    ordsetfocus("SINC001")
-   seek WRACA
-   
+   seek WDFP_RPAI
+
    if found()
-      @ 04,20 say NOME
-   else
-      @ 04,20 say "N/C"+space(27)
+      @ 20,48 say NOME
+   else 
+      @ 20,48 say space(30) 
    endif
-   
-   if WSEXO == "M"
-      @ 04,62 say "Macho"
-   elseif WSEXO == "F"
-      @ 04,62 say "F"+chr(136)+"mea"
-   else
-      @ 04,62 say space(05)
-   endif 
+
+   seek WDFP_RAVO1
+
+   if found()
+      @ 21,48 say NOME
+   else 
+      @ 21,48 say space(30) 
+   endif
+
+   seek WDFP_RAVO2
+
+   if found()
+      @ 22,48 say NOME
+   else 
+      @ 22,48 say space(30) 
+   endif
+  
+   select PLANTEL 
+
+   calc_IDADE()
    
    select LOTE
    ordsetfocus("SINC001")
@@ -1119,6 +1412,38 @@ if WACT == 1
    
    if found()
       @ 07,20 say NOME
+   endif 
+
+   select CATEG
+   ordsetfocus("SINC001")
+   seek WCATEG
+
+   if found()
+      @ 09,20 say NOME
+   endif 
+
+   select GRUPO_P
+   ordsetfocus("SINC001")
+   seek WGRUPO 
+   
+   if found()
+      @ 10,20 say NOME
+   endif 
+
+   select SUB_GRP
+   ordsetfocus("SINC001")
+   seek WSUB_GRP
+   
+   if found()
+      @ 11,20 say NOME
+   endif 
+
+   select PENDENC
+   ordsetfocus("SINC001")
+   seek WPEND
+   
+   if found()
+      @ 12,20 say NOME
    endif 
 
 elseif WACT == 2 
@@ -1139,11 +1464,13 @@ endif
 
 select PLANTEL 
 
+SET CENTURY OFF
+
 return .t.
 
-*********************
-function save_PLANTEL
-*********************
+*****************************
+function save_PLANTEL(MODULO)
+*****************************
 select PLANTEL 
 
 replace BRINCO     with WBRINCO,; 
@@ -1184,7 +1511,208 @@ replace BRINCO     with WBRINCO,;
         OBS3       with WOBS3,;
         OBS4       with WOBS4
 
+if MODULO == "INC" 
+   replace USER_INC with WPUSUARIO,;
+           DATE_INC with date(),;
+           TIME_INC with time(),;
+           USER_ALT with space(20),;
+           DATE_ALT with ctod(space(08)),;
+           TIME_ALT with space(08),;
+           USER_BX  with space(20),;
+           DATE_BX  with ctod(space(08)),;
+           TIME_BX  with space(08),;
+           USER_CAN with space(20),;
+           DATE_CAN with ctod(space(08)),;
+           TIME_CAN with space(08)      
+ 
+elseif MODULO == "ALT" 
+   replace USER_ALT with WPUSUARIO,;
+           DATE_ALT with date(),;
+           TIME_ALT with time()
+
+elseif MODULO == "BX"
+   replace USER_BX  with WPUSUARIO,;
+           DATE_BX  with date(),;
+           TIME_BX  with time()   
+endif
+
 grava()
+
+return .t.
+
+
+********************************************
+function painelDeHistoricoDoPLANTEL(WBRINCO)
+********************************************
+LOCAL WOP
+
+SOMBRA(14,46,21,79,8)
+
+setcolor(COR_CONS)
+@ 13,44 clear to 20,78
+
+@ 13,45 say    "        H I S T O R I C O        "
+
+@ 15,45 PROMPT "Dados Reprodutivos               "
+@ 16,45 PROMPT "Pesagens                         "
+@ 17,45 PROMPT "Sintomas Cl"+chr(161)+"nicos/Tratamentos    "
+@ 18,45 PROMPT "Troca de Lote                    "
+@ 19,45 PROMPT "Troca de Pasto/Piquete           "
+@ 20,45 PROMPT "Vacina"+chr(135)+chr(132)+"o                        "
+MENU TO WOP 
+
+setcolor(COR_TEXT)
+
+if WOP == 5
+   painelDeTrocaPasto(WBRINCO)
+elseif WOP == 6
+   painelDeVacinacoes(WBRINCO)  
+endif 
+
+return .t.
+
+
+************************************
+function painelDeTrocaPasto(WBRINCO)
+************************************
+LOCAL WAREA := ALIAS()
+LOCAL WBOX  := savescreen(08,00,22,79)
+LOCAL WLIN  := 12
+
+setcolor(COR_TEXT)
+@ 08,00 clear to 22,79 
+@ 24,00 clear to 24,79
+
+setcolor(COR_CONS)
+@ 09,01 clear to 09,78
+CENTRO(09,"DADOS DE TROCA DE PASTO/PIQUETE")
+setcolor(COR_TEXT)
+   
+@ 10,01 say "SEQ    DATA        DE                            PARA"
+
+setcolor(COR_SUB)
+@ 11,01 to 11,78
+setcolor(COR_TEXT)
+
+select TROCA_P 
+ordsetfocus("SINC002")
+seek WBRINCO 
+
+do while BRINCO == WBRINCO .and. ! eof() 
+
+   @ WLIN,01 say SEQ    picture "999999"
+   @ WLIN,09 say DATA
+   @ WLIN,19 say strzero(PASTO_ANT,3)
+   @ WLIN,49 say strzero(PASTO_NEW,3) 
+
+   WP1 = PASTO_ANT 
+   WP2 = PASTO_NEW
+
+   select PASTO
+   ordsetfocus("SINC001")
+   seek WP1
+
+   if found() 
+      @ WLIN,22 say "-"+NOME 
+   else 
+      @ WLIN,22 say "-"+"N/C"
+   endif 
+ 
+   seek WP2
+
+   if found() 
+      @ WLIN,52 say "-"+NOME 
+   else 
+      @ WLIN,52 say "-"+"N/C"
+   endif 
+
+   select TROCA_P 
+   skip +1 
+   
+   WLIN++
+
+   if WLIN > 22 
+      inkey(0)
+      WLIN = 22
+      scroLl(12,00,22,79,-1) 
+   endif 
+
+enddo
+
+CENTRO(24,"Pressione qualquer tecla para retornar...")
+inkey(0)
+
+restscreen(08,00,22,79,WBOX)
+
+select &WAREA
+
+return .t.
+
+
+************************************
+function painelDeVacinacoes(WBRINCO)
+************************************
+LOCAL WAREA := ALIAS()
+LOCAL WBOX  := savescreen(08,00,22,79)
+LOCAL WLIN  := 12
+
+setcolor(COR_TEXT)
+@ 08,00 clear to 22,79 
+@ 24,00 clear to 24,79
+
+setcolor(COR_CONS)
+@ 09,01 clear to 09,78
+CENTRO(09,"DADOS DE VACINA"+chr(128)+chr(142)+"O")
+setcolor(COR_TEXT)
+   
+@ 10,01 say "SEQ     DATA        VACINA                              PROXIMA"
+
+setcolor(COR_SUB)
+@ 11,01 to 11,78
+setcolor(COR_TEXT)
+
+select VACINA_P 
+ordsetfocus("SINC002")
+seek WBRINCO 
+
+do while BRINCO == WBRINCO .and. ! eof() 
+
+   @ WLIN,01 say SEQ    picture "999999"
+   @ WLIN,09 say DATA
+   @ WLIN,21 say strzero(VACINA,3)
+   @ WLIN,57 say PROXIMA
+
+   WCOD = VACINA 
+    
+   select VACINA 
+   ordsetfocus("SINC001")
+   seek WCOD 
+
+   if found() 
+      @ WLIN,24 say "-"+NOME 
+   else 
+      @ WLIN,24 say "-"+"N/C"
+   endif 
+
+   select VACINA_P 
+   skip +1 
+   
+   WLIN++
+
+   if WLIN > 22 
+      inkey(0)
+      WLIN = 22
+      scroLl(12,00,22,79,-1) 
+   endif 
+
+enddo
+
+CENTRO(24,"Pressione qualquer tecla para retornar...")
+inkey(0)
+
+restscreen(08,00,22,79,WBOX)
+
+select &WAREA
 
 return .t.
 

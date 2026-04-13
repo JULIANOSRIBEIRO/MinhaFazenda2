@@ -86,7 +86,7 @@ do while .t.
    
    WCMP  := {"PASTO", "BRINCO", "REGISTRO", "SEXO", "NASC", "IDADE", "RACA", "PELAGEM", "ENTRADA", "DOC", "VALOR", "OBS1", "OBS2", "OBS3"}                   
    WTPO  := {"C"    , "C"     , "C"       , "C"   , "D"   , "C"    , "C"   , "C"      , "D"      , "C"  , "N"    , "C"   , "C"   , "C"   }
-   WTMO  := {40     , 08      , 15        , 05    , 08    , 12     , 35    , 20       , 08       , 12   , 14     , 60    , 60    , 60    }
+   WTMO  := {40     , 15      , 15        , 05    , 08    , 12     , 35    , 20       , 08       , 12   , 14     , 60    , 60    , 60    }
    WDEC  := {00     , 00      , 00        , 00    , 00    , 00     , 00    , 00       , 00       , 00   , 02     , 00    , 00    , 00    }
     
    WIDX1 := "PASTO+BRINCO"
@@ -230,7 +230,7 @@ do while .t.
       endif
     
       oPrinter:setPrc(oPrinter:pRow()+1,0)
-      oPrinter:textOut(BRINCO)
+      oPrinter:textOut(alltrim(BRINCO))
       oPrinter:setPrc(oPrinter:pRow(),10)
       oPrinter:textOut(left(REGISTRO,12))
       oPrinter:setPrc(oPrinter:pRow(),24)
@@ -466,7 +466,7 @@ do while .t.
    
    WCMP  := {"PASTO", "BRINCO", "SEXO", "IDADE", "RACA", "PELAGEM", "ARQUIVO", "DATA", "PESO", "GANHO"}                   
    WTPO  := {"C"    , "C"     , "C"   , "C"    , "C"   , "C"      , "N"      , "D"   , "N"   , "N"    }
-   WTMO  := {40     , 08      , 05    , 12     , 35    , 20       , 10       , 08    , 14    , 14     }
+   WTMO  := {40     , 15      , 05    , 12     , 35    , 20       , 10       , 08    , 14    , 14     }
    WDEC  := {00     , 00      , 00    , 00     , 00    , 00       , 00       , 00    , 01    , 01     }
     
    WIDX1 := "PASTO+BRINCO+dtos(DATA)"
@@ -812,7 +812,7 @@ LOCAL WCOR := setcolor()
 
 WDATA1  = DATE()
 WDATA2  = DATE()
-WBRINCO = "99999999"
+WBRINCO = "999999999999999"
 
 do while .t.
 
@@ -848,10 +848,10 @@ do while .t.
    @ 03,40 get WDATA1         
    @ 04,40 get WDATA2                               valid WDATA2 >= WDATA1
 
-   @ 06,40 get WBRINCO    picture "99999999"        valid busca_BRINCO()
+   @ 06,40 get WBRINCO    picture "@!"              valid busca_BRINCO()
    
-   @ 08,40 get WGANHO_S   picture "@Z@R@E 999999.9" when WBRINCO == "99999999"
-   @ 09,40 get WGANHO_I   picture "@Z@R@E 999999.9" when WBRINCO == "99999999"
+   @ 08,40 get WGANHO_S   picture "@Z@R@E 999999.9" when WBRINCO == "999999999999999"
+   @ 09,40 get WGANHO_I   picture "@Z@R@E 999999.9" when WBRINCO == "999999999999999"
   
    @ 11,40 get WORDEM_REL picture "9"               valid WORDEM_REL $ "123"
    read_f()
@@ -875,7 +875,7 @@ do while .t.
       loop
    endif
 
-   if WBRINCO == "99999999"
+   if WBRINCO == "999999999999999"
       WIMP = sel_PRINTER()
       if lastkey() == 27
          loop
@@ -890,7 +890,7 @@ do while .t.
    
    WCMP  := {"BRINCO", "ARQ_1", "DATA_1", "PESO_1", "ARQ_2", "DATA_2", "PESO_2", "NPESO", "TPESO", "MEDIA", "GANHO"}                   
    WTPO  := {"C"     , "N"    , "D"     , "N"     , "N"    , "D"     , "N"     , "N"    , "N"    , "N"    , "N"    }
-   WTMO  := {08      , 08     , 08      , 14      , 08     , 08      , 14      , 06     , 14     , 14     , 14     }
+   WTMO  := {15      , 08     , 08      , 14      , 08     , 08      , 14      , 06     , 14     , 14     , 14     }
    WDEC  := {00      , 00     , 00      , 01      , 00     , 00      , 01      , 00     , 03     , 01     , 01     }
     
    WIDX1 := "BRINCO"
@@ -918,7 +918,7 @@ do while .t.
       endif 
 
       //filtro por brinco 
-      if WBRINCO <> "99999999"
+      if WBRINCO <> "999999999999999"
          if BRINCO <> WBRINCO
             skip +1
             loop
@@ -952,7 +952,7 @@ do while .t.
     
    do while dtos(DATA) <= dtos(WDATA2) .and. ! eof()
           
-      if WBRINCO <> "99999999"
+      if WBRINCO <> "999999999999999"
          if BRINCO <> WBRINCO
             skip +1
             loop
@@ -1111,7 +1111,7 @@ do while .t.
 
    // quando for um brinco especifico exibe a informacao na tela
    
-   if WBRINCO <> "99999999"
+   if WBRINCO <> "999999999999999"
 
       @ 12,00 clear to 22,79
       @ 24,00 clear to 24,79
@@ -1306,7 +1306,7 @@ return .t.
 function busca_BRINCO
 *********************
 
-if WBRINCO == "99999999"
+if WBRINCO == "999999999999999"
    return .t.
 endif
 
@@ -1387,7 +1387,7 @@ do while .t.
    
    WCMP  := {"BRINCO", "ARQ_1", "DATA_1", "PESO_1", "ARQ_2", "DATA_2", "PESO_2", "NPESO", "TPESO", "MEDIA", "GANHO", "CUSTO_KG", "CUSTO_TOT"}                   
    WTPO  := {"C"     , "N"    , "D"     , "N"     , "N"    , "D"     , "N"     , "N"    , "N"    , "N"    , "N"    , "N"       , "N"        }
-   WTMO  := {08      , 08     , 08      , 14      , 08     , 08      , 14      , 06     , 14     , 14     , 14     , 14        , 14         }
+   WTMO  := {15      , 08     , 08      , 14      , 08     , 08      , 14      , 06     , 14     , 14     , 14     , 14        , 14         }
    WDEC  := {00      , 00     , 00      , 01      , 00     , 00      , 01      , 00     , 03     , 01     , 01     , 02        , 02         }
     
    WIDX1 := "BRINCO"
@@ -1558,7 +1558,7 @@ do while .t.
       endif    
 
       oPrinter:setPrc(oPrinter:pRow()+1,0)
-      oPrinter:textOut(transform(BRINCO,"99999999"))
+      oPrinter:textOut(alltrim(BRINCO))
       oPrinter:setPrc(oPrinter:pRow(),09)
       oPrinter:textOut("|")
       oPrinter:setPrc(oPrinter:pRow(),11)
@@ -1754,7 +1754,7 @@ do while .t.
    
    WCMP  := {"PASTO", "BRINCO", "SEXO", "IDADE", "RACA", "PELAGEM", "VACINA", "DATA", "PROXIMA", "OBS"}                   
    WTPO  := {"C"    , "C"     , "C"   , "C"    , "C"   , "C"      , "C"     , "D"   , "D"      , "C"  }
-   WTMO  := {40     , 08      , 05    , 12     , 35    , 20       , 40      , 08    , 08       , 60   }
+   WTMO  := {40     , 15      , 05    , 12     , 35    , 20       , 40      , 08    , 08       , 60   }
    WDEC  := {00     , 00      , 00    , 00     , 00    , 00       , 00      , 00    , 00       , 00   }
     
    WIDX1 := "PASTO+BRINCO+descend(dtos(DATA))"
@@ -1934,7 +1934,7 @@ do while .t.
 
       if WDIV_VACINA
          oPrinter:setPrc(oPrinter:pRow()+1,0)
-         oPrinter:textOut(BRINCO)
+         oPrinter:textOut(alltrim(BRINCO))
          oPrinter:setPrc(oPrinter:pRow(),11)
          oPrinter:textOut(SEXO)
          oPrinter:setPrc(oPrinter:pRow(),19)
@@ -2134,7 +2134,7 @@ do while .t.
    
    WCMP  := {"BRINCO", "REGISTRO", "SEXO", "IDADE", "RACA", "PELAGEM", "ENTRADA", "DOC", "VALOR", "PESO1", "SAIDA", "MOTIVO", "NF", "VR_NF", "PESO2", "OBS_NF", "OBS1", "OBS2", "OBS3"}                   
    WTPO  := {"C"     , "C"       , "C"   , "C"    , "C"   , "C"      , "D"      , "C"  , "N"    , "N"    , "D"    , "C"     , "C" , "N"    , "N"    , "C"     , "C"   , "C"   , "C"   }
-   WTMO  := {08      , 15        , 05    , 12     , 35    , 20       , 08       , 12   , 14     , 14     , 08     , 15      , 09  , 14     , 14     , 60      , 60    , 60    , 60    }
+   WTMO  := {15      , 15        , 05    , 12     , 35    , 20       , 08       , 12   , 14     , 14     , 08     , 15      , 09  , 14     , 14     , 60      , 60    , 60    , 60    }
    WDEC  := {00      , 00        , 00    , 00     , 00    , 00       , 00       , 00   , 02     , 01     , 00     , 00      , 00  , 02     , 01     , 00      , 00    , 00    , 00    }
      
    WIDX1 := "BRINCO"
@@ -2292,7 +2292,7 @@ do while .t.
       WTOTAL_ANIMAIS++
 
       oPrinter:setPrc(oPrinter:pRow()+1,0)
-      oPrinter:textOut(BRINCO)
+      oPrinter:textOut(alltrim(BRINCO))
       oPrinter:setPrc(oPrinter:pRow(),10)
       oPrinter:textOut(left(REGISTRO,10))
       oPrinter:setPrc(oPrinter:pRow(),22)

@@ -25,7 +25,7 @@ do while .t.
 
    setcolor(COR_DEST)
    @ 20,01 say "#LAYOUT DO ARQUIVO"
-   @ 21,01 say "1-Brinco (99999999); 2-Data (DD/MM/AAAA as HH:MM:SS); 3-Peso (999.999)"
+   @ 21,01 say "1-Brinco; 2-Data (DD/MM/AAAA as HH:MM:SS); 3-Peso (999.999)"
 
    WN_ARQ = space(40)
 
@@ -65,7 +65,7 @@ do while .t.
 
    WCMP  := {"ARQUIVO", "BRINCO", "DATA", "HORA", "PESO", "PLANTEL"}
    WTPO  := {"N"      , "C"     , "D"   , "C"   , "N"   , "C"      } 
-   WTMO  := {08       , 08      , 08    , 08    , 14    , 10       }
+   WTMO  := {08       , 15      , 08    , 08    , 14    , 10       }
    WDEC  := {00       , 00      , 00    , 00    , 06    , 00       }
    
    WIDX1 := "BRINCO"
@@ -106,7 +106,7 @@ do while .t.
    WCHAR   = space(01)
    WSTRING = ""
    WCOLUNA = 0
-   WBRINCO = space(08)
+   WBRINCO = space(15)
    WDT_HR  = ""
    WPESO   = 0
      
@@ -154,13 +154,13 @@ do while .t.
 
          select PLANTEL
          ordsetfocus("SINC001")
-         seek left(alltrim(WBRINCO)+space(08),8)
+         seek left(alltrim(WBRINCO)+space(15),15)
 
          if found()
             WPLANTEL = "S"
          else
             for I=1 to 5 
-                WNB = left(replicate("0",I)+alltrim(WBRINCO)+space(08),8)
+                WNB = left(replicate("0",I)+alltrim(WBRINCO)+space(15),15)
  
                 seek WNB 
        
@@ -191,7 +191,7 @@ do while .t.
          WCHAR   = space(01)
          WSTRING = ""
          WCOLUNA = 0
-         WBRINCO = space(08)
+         WBRINCO = space(15)
          WDT_HR  = ""
          WPESO   = 0
      
@@ -209,7 +209,7 @@ do while .t.
    
    BRW_HELP("IMPORTACAO DE PESAGENS",.t.,{;
    {"str(ARQUIVO,8)","99999999" ,"Arquivo"},;
-   {"BRINCO"        ,"99999999" ,"Brinco" },;   
+   {"BRINCO"        ,""         ,"Brinco" },;   
    {"DATA"          ,""         ,"DATA"   },;
    {"HORA"          ,""         ,"Hora"   },;
    {"PESO"          ,"99999999" ,"Peso"   },;   
@@ -383,9 +383,9 @@ do while .t.
          @ 02,00 clear to 22,79
          @ 03,01 say "Brinco: "
 
-         WBRINCO = space(08)
+         WBRINCO = space(15)
 
-         @ 03,09 get WBRINCO picture "99999999"  
+         @ 03,09 get WBRINCO picture "@!"  
          read_f()
 
          if empty(WBRINCO) .or. lastkey() == 27
@@ -531,7 +531,7 @@ do while .t.
       if CONFIRMA(24,"Excluir essa pesagem...(S/N)?","N") == "S"
          if reglock()
             replace ARQUIVO  with 0,;
-                    BRINCO   with space(08),;
+                    BRINCO   with space(15),;
                     DATA     with ctod(space(08)),;
                     HORA     with space(08),;
                     PESO     with 0,;
@@ -593,7 +593,7 @@ return .t.
 ******************
 function ret_GANHO
 ******************
-LOCAL WBRINCO := space(08)
+LOCAL WBRINCO := space(15)
 
 WBRINCO = BRINCO 
 WPESO_1 = PESO 
@@ -639,7 +639,7 @@ do while .t.
    setcolor(COR_CONS+","+COR_GETS+",,,"+COR_CONS)
 
    @ 09,21 get WARQUIVO picture "99999999"
-   @ 10,21 get WBRINCO  picture "99999999"        valid seek_BRINCO()
+   @ 10,21 get WBRINCO  picture "@!"              valid seek_BRINCO()
    @ 11,21 get WDATA
    @ 12,21 get WHORA     
    @ 13,21 get WPESO    picture "@R@E 999,999.9"  valid WPESO > 0 
@@ -835,7 +835,7 @@ do while .t.
    setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
    @ WLIN,01 get WARQUIVO picture "99999999"
-   @ WLIN,10 get WBRINCO  picture "99999999"  valid check_PLANTEL()
+   @ WLIN,10 get WBRINCO  picture "@!"  valid check_PLANTEL()
    @ WLIN,21 get WDATA
    @ WLIN,31 get WHORA    picture "99:99:99"
    @ WLIN,43 get WPESO    picture "@R@E 999,999.9"
@@ -884,7 +884,7 @@ if found()
    WPLANTEL = "S"
 else 
    WPLANTEL = "N"
-   MENSAGEM("Brinco n"+chr(132)+"o cadastrado no plantel.")
+   MENSAGEM("N"+chr(163)+"mero de brinco n"+chr(132)+"o cadastrado no plantel.")
 endif 
 
 return .t.
@@ -1028,7 +1028,7 @@ do while .t.
 
             if reglock()
                replace ARQUIVO  with 0,;
-                       BRINCO   with space(08),;
+                       BRINCO   with space(15),;
                        DATA     with ctod(space(08)),;
                        HORA     with space(08),;
                        PESO     with 0,;
@@ -1054,10 +1054,10 @@ do while .t.
 
       do while .t.
 
-         WBRINCO = space(08)
+         WBRINCO = space(15)
 
          @ 05,01 say "N"+chr(163)+"mero do Brinco...........................:"
-         @ 05,46 get WBRINCO picture "99999999"  
+         @ 05,46 get WBRINCO picture "@!"  
          read_f()
 
          if empty(WBRINCO) .or. lastkey() == 27
@@ -1083,7 +1083,7 @@ do while .t.
 
             if reglock()
                replace ARQUIVO with 0,;
-                       BRINCO  with space(08),;
+                       BRINCO  with space(15),;
                        DATA    with ctod(space(08)),;
                        HORA    with space(08),;
                        PESO    with 0,;
