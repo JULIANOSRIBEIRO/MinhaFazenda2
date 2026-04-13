@@ -71,9 +71,10 @@ if ! file("&WDIRE_FAZ\PLANTEL.CDX")
    abre(AOF,"&WDIRE_FAZ\PLANTEL","E","PLANTEL")  
    index on BRINCO                                tag SINC001
    index on REGISTRO                              tag SINC002
-   index on BRINCO_MAE                            tag SINC003
-   index on ENTRADA                               tag SINC004
-   index on SAIDA                                 tag SINC005
+   index on upper(NOME)                           tag SINC003
+   index on BRINCO_MAE                            tag SINC004
+   index on ENTRADA                               tag SINC005
+   index on SAIDA                                 tag SINC006
    DBCLOSEAREA()
 endif
 

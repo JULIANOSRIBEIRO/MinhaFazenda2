@@ -194,26 +194,28 @@ OPC2 = 1
 
 do while .t.
 
-   private OPCAO[7]
+   private OPCAO[8]
    OPCAO[1] = " Pesagens " 
    OPCAO[2] = " Troca de Lote " 
    OPCAO[3] = " Troca de Pasto/Piquete " 
    OPCAO[4] = " Saida do Plantel "
    OPCAO[5] = " Vacina"+chr(135)+chr(132)+"o " 
    OPCAO[6] = " Sintomas Cl"+chr(161)+"nicos/Tratamentos " 
-   OPCAO[7] = " Fim " 
+   OPCAO[7] = " Dados Reprodutivos " 
+   OPCAO[8] = " Fim " 
 
-   private LETRA[7]
+   private LETRA[8]
    LETRA[1] = "P" 
    LETRA[2] = "L"
    LETRA[3] = "P"
    LETRA[4] = "S"
    LETRA[5] = "V"
    LETRA[6] = "T"
-   LETRA[7] = "F"
+   LETRA[7] = "R"
+   LETRA[8] = "F"
 
-   private ACESSO[7]
-   for I=1 to 6
+   private ACESSO[8]
+   for I=1 to 7
       ACESSO[I] = ver_SENHA(left(CRI,2)+LETRA[I])
    next
    ACESSO[1] = .t.
@@ -223,11 +225,12 @@ do while .t.
    ACESSO[5] = .t.
    ACESSO[6] = .t.
    ACESSO[7] = .t.
+   ACESSO[8] = .t.
 
    OPC2 = ACHOISE(OPC2,2,OPCAO,ACESSO,LETRA,.t.)
    
-   if OPC2 == 0 .or. OPC2 == 7
-      return .t.
+   if OPC2 == 0 .or. OPC2 == 8
+       return .t.
    elseif OPC2 == 1  
       menu_PESAGEM()   
    elseif OPC2 == 2
@@ -240,6 +243,8 @@ do while .t.
       menu_VACINACAO()
    elseif OPC2 == 6
       menu_ANAMNESE()
+   elseif OPC2 == 7
+      menu_DADOS_REPRODUTIVOS()    
    endif
    
 enddo
@@ -496,13 +501,13 @@ do while .t.
    if OPC3 == 0 .or. OPC3 == 5
       return .t.
    elseif OPC3 == 1  
-  //    INC_ANAMNESE()
+      INC_ANAMNESE()
    elseif OPC3 == 2
-  //    ALT_ANAMNESE()
+      ALT_ANAMNESE()
    elseif OPC3 == 3
-  //    CON_ANAMNESE() 
+      CON_ANAMNESE() 
    elseif OPC3 == 4
-  //    EXC_ANAMNESE()
+      EXC_ANAMNESE()
    endif    
 
 enddo
@@ -1422,3 +1427,135 @@ enddo
 
 return .t.
 
+
+********************************
+function menu_DADOS_REPRODUTIVOS
+********************************
+OPC3 = 1
+
+do while .t.
+
+   private OPCAO[3]
+   OPCAO[1] = " Banco de S"+chr(136)+"men " 
+   OPCAO[2] = " Reprodu"+chr(135)+chr(132)+"o " 
+   OPCAO[3] = " Fim " 
+
+   private LETRA[3]
+   LETRA[1] = "B"
+   LETRA[2] = "R"  
+   LETRA[3] = "F"  
+ 
+   private ACESSO[3]
+   for I = 1 to 2
+      ACESSO[I] = ver_SENHA(LETRA[I])
+   next
+
+   ACESSO[1] = .t.
+   ACESSO[2] = .t.
+   ACESSO[3] = .t.
+
+   OPC3 = achoise(OPC3,3,OPCAO,ACESSO,LETRA,.f.)
+
+   if OPC3 == 0 .or. OPC3 == 3
+      return .t.
+   elseif OPC3 == 1  
+      menu_BANCO_DE_SEMEN() 
+   elseif OPC3 == 2
+      menu_REPRODUCAO() 
+   endif    
+
+enddo
+
+return .t.
+
+  
+****************************
+function menu_BANCO_DE_SEMEN
+****************************
+OPC4 = 1
+
+do while .t.
+
+   private OPCAO[5]
+   OPCAO[1] = " Inclus"+chr(132)+"o " 
+   OPCAO[2] = " Altera"+chr(135)+chr(132)+"o " 
+   OPCAO[3] = " Consulta " 
+   OPCAO[4] = " Exclus"+chr(132)+"o " 
+   OPCAO[5] = " Fim " 
+
+   private LETRA[5]
+   LETRA[1] = "I"
+   LETRA[2] = "A"
+   LETRA[3] = "C"  
+   LETRA[4] = "E"  
+   LETRA[5] = "F"  
+ 
+   private ACESSO[5]
+   for I = 1 to 4
+      ACESSO[I] = ver_SENHA(LETRA[I])
+   next
+   ACESSO[5] = .t.
+
+   OPC4 = achoise(OPC3,4,OPCAO,ACESSO,LETRA,.f.)
+
+   if OPC4 == 0 .or. OPC4 == 5
+      return .t.
+   elseif OPC4 == 1  
+      INC_BCO_SEMEN()
+   elseif OPC4 == 2
+      ALT_BCO_SEMEN()
+   elseif OPC4 == 3
+      CON_BCO_SENEN() 
+   elseif OPC4 == 4
+      EXC_BCO_SEMEN()
+   endif    
+
+enddo
+
+return .t.
+
+ 
+************************
+function menu_REPRODUCAO
+************************
+OPC4 = 1
+
+do while .t.
+
+   private OPCAO[5]
+   OPCAO[1] = " Inclus"+chr(132)+"o " 
+   OPCAO[2] = " Altera"+chr(135)+chr(132)+"o " 
+   OPCAO[3] = " Consulta " 
+   OPCAO[4] = " Exclus"+chr(132)+"o " 
+   OPCAO[5] = " Fim " 
+
+   private LETRA[5]
+   LETRA[1] = "I"
+   LETRA[2] = "A"
+   LETRA[3] = "C"  
+   LETRA[4] = "E"  
+   LETRA[5] = "F"  
+ 
+   private ACESSO[5]
+   for I = 1 to 4
+      ACESSO[I] = ver_SENHA(LETRA[I])
+   next
+   ACESSO[5] = .t.
+
+   OPC4 = achoise(OPC3,4,OPCAO,ACESSO,LETRA,.f.)
+
+   if OPC4 == 0 .or. OPC4 == 5
+      return .t.
+   elseif OPC4 == 1  
+      INC_REPRODUCAO()
+   elseif OPC4 == 2
+      ALT_REPRODUCAO()
+   elseif OPC4 == 3
+      CON_REPRODUCAO() 
+   elseif OPC4 == 4
+      EXC_REPRODUCAO()
+   endif    
+
+enddo
+
+return .t.

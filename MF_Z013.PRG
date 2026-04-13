@@ -43,7 +43,7 @@ do while .t.
    @ 03,16 say strzero(WSEQ,6)
 
    WDATA     = DATE()
-   WBRINCO   = space(08) 
+   WBRINCO   = space(15) 
    WLOTE_ANT = 0
    WLOTE_NEW = 0
    WOBS1     = space(60)
@@ -53,7 +53,7 @@ do while .t.
       setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
       @ 05,16 say WDATA
-      @ 07,16 get WBRINCO   picture "99999999" valid busca2_BRINCO()
+      @ 07,16 get WBRINCO   picture "@!"       valid busca2_BRINCO()
       @ 11,16 get WLOTE_NEW picture "@Z 999"   valid busca2_LOTE()
       @ 13,16 get WOBS1   
       read_f()
@@ -269,7 +269,7 @@ do while .t.
       setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
       @ 05,16 say WDATA
-      @ 07,16 get WBRINCO   picture "99999999" valid busca2_BRINCO()
+      @ 07,16 get WBRINCO   picture "@!"       valid busca2_BRINCO()
       @ 11,16 get WLOTE_NEW picture "@Z 999"   valid busca2_LOTE()
       @ 13,16 get WOBS1   
       read_f()
@@ -376,9 +376,9 @@ do while .t.
 
       do while .t.
 
-         WBRINCO = space(08)
+         WBRINCO = space(15)
 
-         @ 07,16 get WBRINCO picture "99999999" valid busca2_BRINCO()                      
+         @ 07,16 get WBRINCO picture "@!" valid busca2_BRINCO()                      
          read_f()           
   
          if empty(WBRINCO) .or. lastkey() == 27
@@ -436,7 +436,7 @@ do while .t.
 
       @ 03,16 say strzero(SEQ,6)
       @ 05,16 say DATA
-      @ 07,16 say BRINCO   picture "99999999" 
+      @ 07,16 say BRINCO   picture "@!" 
       @ 09,16 say LOTE_ANT picture "999"   
       @ 11,16 say LOTE_NEW picture "999"   
       @ 13,16 say OBS1   
@@ -539,7 +539,7 @@ do while .t.
 
    @ 03,16 say strzero(WSEQ,6)
    @ 05,16 say DATA
-   @ 07,16 say BRINCO   picture "99999999" 
+   @ 07,16 say BRINCO   picture "@!" 
    @ 09,16 say LOTE_ANT picture "999"   
    @ 11,16 say LOTE_NEW picture "999"   
    @ 13,16 say OBS1   
@@ -576,7 +576,7 @@ do while .t.
       endif
        
       replace SEQ      with 0,;
-              BRINCO   with space(08),;
+              BRINCO   with space(15),;
               DATA     with ctod(space(08)),;
               LOTE_ANT with 0,;
               LOTE_NEW with 0,;

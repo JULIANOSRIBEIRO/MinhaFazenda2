@@ -155,7 +155,7 @@ endif
 abre(000,"&WDIRE_AUX\LOGIN")
 
 *********************************************************
-MENSAGEM("OLA MUNDO :);ESTOU AQUI...",0)
+
 LOGIN()
 
 MENU_PRINCIPAL()
@@ -427,6 +427,7 @@ endif
 
 return .t.
 
+// funções pendentes
 function totalDeAnimaisNoPasto
 function totaldeanimaisnolote 
 function totalDeAnimaisPorRaca
