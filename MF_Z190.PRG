@@ -3694,9 +3694,11 @@ setcolor(COR_CAB)
 @ 12,47 say if(empty(DATE_CAN),space(08),DATE_CAN)
 @ 12,56 say TIME_CAN 
 
+/* 
 @ 13,19 say USER_IMP
 @ 13,47 say if(empty(DATE_IMP),space(08),DATE_IMP)
-@ 13,56 say TIME_IMP
+@ 13,56 say TIME_IMP 
+*/
 
 setcolor(COR_OPC)
 @ 17,31 say strzero(day(DATE()),2)+"/"+upper(left(MES(month(DATE())),3))+"/"+right(strzero(year(DATE()),4),2)
@@ -5877,10 +5879,10 @@ select PLANTEL
 ordsetfocus("SINC001")
 
 BRW_HELP("PLANTEL",.t., {;
-{"BRINCO" ,"99999999" ,"Brinco" },;
-{"SEXO"   ,""         ,"Sexo"   },;
-{"PELAGEM",""         ,"Pelagem"},;
-{"ENTRADA",""         ,"Entrada"}})
+{"BRINCO" ,"","Brinco" },;
+{"SEXO"   ,"","Sexo"   },;
+{"PELAGEM","","Pelagem"},;
+{"ENTRADA","","Entrada"}})
  
 select &WAREA
 setcolor(WCOR)
@@ -5955,17 +5957,17 @@ select PLANTEL
 ordsetfocus("SINC001")
 
 BRW_HELP("PLANTEL",.t., {;
-{"BRINCO"      ,"99999999","Brinco"    },;
-{"SEXO"        ,""        ,"Sexo"      },;
-{"ret_I(NASC)" ,""        ,"Idade"     },;
-{"PELAGEM"     ,""        ,"Pelagem"   },;
-{"ret_R(RACA)" ,""        ,"Raca"      },;
-{"ret_L(LOTE)" ,""        ,"Lote"      },;
-{"ret_P(PASTO)",""        ,"Pasto"     },;
-{"BRINCO_MAE"  ,"99999999","Brinco Mae"},;
-{"ENTRADA"     ,""        ,"Entrada"   },;
-{"SAIDA"       ,""        ,"Saida"     },;
-{"MOTIVO"      ,""        ,"Motivo"    }})
+{"BRINCO"      ,"","Brinco"    },;
+{"SEXO"        ,"","Sexo"      },;
+{"ret_I(NASC)" ,"","Idade"     },;
+{"PELAGEM"     ,"","Pelagem"   },;
+{"ret_R(RACA)" ,"","Raca"      },;
+{"ret_L(LOTE)" ,"","Lote"      },;
+{"ret_P(PASTO)","","Pasto"     },;
+{"BRINCO_MAE"  ,"","Brinco Mae"},;
+{"ENTRADA"     ,"","Entrada"   },;
+{"SAIDA"       ,"","Saida"     },;
+{"MOTIVO"      ,"","Motivo"    }})
  
 select &WAREA
 setcolor(WCOR)
