@@ -25,6 +25,7 @@ LOCAL aDIR := Directory(ExeName())
 PUBLIC nServer := atrepl('"', getenv("COMPUTERNAME"), "") 
 PUBLIC WPUSUARIO  
 PUBLIC WPSENHA 
+PUBLIC WWNAV := .f.
 
 ********************************************************************
 
@@ -55,7 +56,6 @@ setblink(.t.)
 setmode(25,80)
 
 set key 28 to SCALC
-set key -1 to CALENDARIO
 
 // declara as variaveis publicas do Sistema
 public WPUSUARIO, WPDOMINIO, WPPERFIL, SIR
@@ -155,7 +155,7 @@ endif
 abre(000,"&WDIRE_AUX\LOGIN")
 
 *********************************************************
-
+MENSAGEM("OLA MUNDO :);ESTOU AQUI...",0)
 LOGIN()
 
 MENU_PRINCIPAL()

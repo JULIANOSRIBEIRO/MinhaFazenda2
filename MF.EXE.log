@@ -1,0 +1,11 @@
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z010.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z010.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z010.obj'...
+
+Type: C >>>xlink.exe -NOEXPOBJ -MAP -FORCE:MULTIPLE -NOIMPLIB -subsystem:console -LIBPATH:"C:\xHB\lib" -LIBPATH:"C:\xHB\c_lib" -LIBPATH:"C:\xHB\c_lib\win"  "Building\OBJ\MF.obj" "Building\OBJ\MF_M001.obj" "Building\OBJ\MF_M099.obj" "Building\OBJ\MF_R011.obj" "Building\OBJ\MF_Z010.obj" "Building\OBJ\MF_Z011.obj" "Building\OBJ\MF_Z012.obj" "Building\OBJ\MF_Z099.obj" "Building\OBJ\MF_Z180.obj" "Building\OBJ\MF_Z181.obj" "Building\OBJ\MF_Z190.obj" "Building\OBJ\MF_Z013.obj" "Building\OBJ\MF_Z014.obj" "Building\OBJ\MF_Z015.obj" "Building\OBJ\MF_Z016.obj" "Building\OBJ\MF_R012.obj" "Building\OBJ\MF_Z020.obj" "C:\GS-Work\Fonte\GS\Oraculo-Icone\ORACULO.RES" "xhb.lib" "dbf.lib" "nsx.lib" "ntx.lib" "cdx.lib" "rmdbfcdx.lib" "ct3comm.lib" crt.lib kernel32.lib user32.lib winspool.lib ole32.lib oleaut32.lib odbc32.lib odbccp32.lib uuid.lib wsock32.lib ws2_32.lib wininet.lib advapi32.lib shlwapi.lib msimg32.lib mpr.lib OleDlg.lib version.lib -out:"C:\MF\MF.EXE"<<<
+
+xLINK: warning: Symbol '(MF_Z016.obj)->_HB_FUN_BUSCA5_BRINCO previously defined at (MF_Z010.obj)' is multiply defined.
+xLINK: warning: Symbol '(MF_R012.obj)->_HB_FUN_CAB_SAIDA previously defined at (MF_R011.obj)' is multiply defined.
