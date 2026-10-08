@@ -9,7 +9,7 @@
 #include "winuser.ch"
 #include "win32prn.ch"
 #include "inkey.ch"
-#include "colors.ch" 
+#include "colors.ch"  
  
 REQUEST DBFCDX     // Indice CDX 
 REQUEST HB_LANG_PT // Portuguese language

@@ -53,7 +53,7 @@ if OPC == 1
       @ 03,17 say strzero(WSEQ,6)
    
       WDATA      = DATE()
-      WBRINCO    = space(15) 
+      WBRINCO    = space(08) 
       WPASTO_ANT = 0
       WPASTO_NEW = 0
       WOBS1      = space(60)
@@ -63,7 +63,7 @@ if OPC == 1
          setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
    
          @ 05,17 say WDATA
-         @ 07,17 get WBRINCO    picture "@!"       valid busca3_BRINCO()
+         @ 07,17 get WBRINCO    picture "99999999" valid busca3_BRINCO()
          @ 11,17 get WPASTO_NEW picture "@Z 999"   valid busca31_PASTO()
          @ 13,17 get WOBS1   
          read_f()
@@ -125,7 +125,7 @@ elseif OPC == 2
       @ 03,17 say strzero(WSEQ,6)
    
       WDATA      = DATE()
-      WBRINCO    = "999999999999999" 
+      WBRINCO    = "99999999" 
       WPASTO_ANT = 0
       WPASTO_NEW = 0
       WOBS1      = space(60)
@@ -135,8 +135,8 @@ elseif OPC == 2
          setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
    
          @ 05,17 say WDATA
-         @ 07,17 say WBRINCO    picture "@!" 
-         @ 07,32 say "-GERAL" 
+         @ 07,17 say WBRINCO    picture "99999999" 
+         @ 07,25 say "-GERAL" 
 
          @ 09,17 get WPASTO_ANT picture "@Z 999"   valid busca30_PASTO(9) 
          @ 11,17 get WPASTO_NEW picture "@Z 999"   valid busca31_PASTO(9)
@@ -531,9 +531,9 @@ do while .t.
 
       do while .t.
 
-         WBRINCO = space(15)
+         WBRINCO = space(08)
 
-         @ 07,17 get WBRINCO picture "@!" valid busca3_BRINCO()                      
+         @ 07,17 get WBRINCO picture "99999999" valid busca3_BRINCO()                      
          read_f()           
   
          if empty(WBRINCO) .or. lastkey() == 27
@@ -591,7 +591,7 @@ do while .t.
 
       @ 03,17 say strzero(SEQ,6)
       @ 05,17 say DATA
-      @ 07,17 say BRINCO    picture "@!" 
+      @ 07,17 say BRINCO    picture "99999999" 
       @ 09,17 say PASTO_ANT picture "999"   
       @ 11,17 say PASTO_NEW picture "999"   
       @ 13,17 say OBS1   
