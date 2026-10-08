@@ -29,6 +29,7 @@ DBF_AUXILIAR()
 
 return .t.
 
+
 *********************
 function CDX_AUXILIAR
 *********************

@@ -5879,10 +5879,10 @@ select PLANTEL
 ordsetfocus("SINC001")
 
 BRW_HELP("PLANTEL",.t., {;
-{"BRINCO" ,"","Brinco" },;
-{"SEXO"   ,"","Sexo"   },;
-{"PELAGEM","","Pelagem"},;
-{"ENTRADA","","Entrada"}})
+{"BRINCO" ,"99999999" ,"Brinco" },;
+{"SEXO"   ,""         ,"Sexo"   },;
+{"PELAGEM",""         ,"Pelagem"},;
+{"ENTRADA",""         ,"Entrada"}})
  
 select &WAREA
 setcolor(WCOR)
@@ -5957,17 +5957,17 @@ select PLANTEL
 ordsetfocus("SINC001")
 
 BRW_HELP("PLANTEL",.t., {;
-{"BRINCO"      ,"","Brinco"    },;
-{"SEXO"        ,"","Sexo"      },;
-{"ret_I(NASC)" ,"","Idade"     },;
-{"PELAGEM"     ,"","Pelagem"   },;
-{"ret_R(RACA)" ,"","Raca"      },;
-{"ret_L(LOTE)" ,"","Lote"      },;
-{"ret_P(PASTO)","","Pasto"     },;
-{"BRINCO_MAE"  ,"","Brinco Mae"},;
-{"ENTRADA"     ,"","Entrada"   },;
-{"SAIDA"       ,"","Saida"     },;
-{"MOTIVO"      ,"","Motivo"    }})
+{"BRINCO"      ,"99999999","Brinco"    },;
+{"SEXO"        ,""        ,"Sexo"      },;
+{"ret_I(NASC)" ,""        ,"Idade"     },;
+{"PELAGEM"     ,""        ,"Pelagem"   },;
+{"ret_R(RACA)" ,""        ,"Raca"      },;
+{"ret_L(LOTE)" ,""        ,"Lote"      },;
+{"ret_P(PASTO)",""        ,"Pasto"     },;
+{"BRINCO_MAE"  ,"99999999","Brinco Mae"},;
+{"ENTRADA"     ,""        ,"Entrada"   },;
+{"SAIDA"       ,""        ,"Saida"     },;
+{"MOTIVO"      ,""        ,"Motivo"    }})
  
 select &WAREA
 setcolor(WCOR)

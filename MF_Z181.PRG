@@ -185,28 +185,81 @@ if ! file("&WDIRE_FAZ\ITENS_S.CDX")
    DBCLOSEAREA()
 endif
 
+*** BCO_SEM
+ACDX++
+if ! file("&WDIRE_FAZ\BCO_SEM.CDX")
+   barraCDX(ACDX,TCDX,"&WDIRE_FAZ\BCO_SEM")
+   abre(AOF,"&WDIRE_FAZ\BCO_SEM","E")
+   index on LOTE                                  tag SINC001
+   index on DATA                                  tag SINC002
+   index on DOADOR+descend(dtos(DATA))            tag SINC003
+   DBCLOSEAREA()
+endif
+
+*** ENT_BS 
+ACDX++
+if ! file("&WDIRE_FAZ\ENT_BS.CDX")
+   barraCDX(ACDX,TCDX,"&WDIRE_FAZ\ENT_BS")
+   abre(AOF,"&WDIRE_FAZ\ENT_BS","E")
+   index on SEQ                                   tag SINC001
+   index on LOTE                                  tag SINC002
+   index on DATA                                  tag SINC003
+   DBCLOSEAREA()
+endif
+
+*** SAI_BS 
+ACDX++
+if ! file("&WDIRE_FAZ\SAI_BS.CDX")
+   barraCDX(ACDX,TCDX,"&WDIRE_FAZ\SAI_BS")
+   abre(AOF,"&WDIRE_FAZ\SAI_BS","E")
+   index on SEQ                                   tag SINC001
+   index on LOTE                                  tag SINC002
+   index on DATA                                  tag SINC003
+   DBCLOSEAREA()
+endif
+
+*** REPRODUCAO
+ACDX++
+if ! file("&WDIRE_FAZ\REPRODUCAO.CDX")
+   barraCDX(ACDX,TCDX,"&WDIRE_FAZ\REPRODUCAO")
+   abre(AOF,"&WDIRE_FAZ\REPRODUCAO","E")
+   index on SEQ                                   tag SINC001
+   index on DATA                                  tag SINC002
+   index on BRINCO+descend(dtos(DATA))            tag SINC003
+   index on CN_TOURO                              tag SINC004
+   index on IA_LOTE                               tag SINC005
+   index on TE_TOURO                              tag SINC006
+   DBCLOSEAREA()
+endif
+
 return .f.
+
 
 ******************
 function DBF_PRIME
 ******************
 
-abre(AOF,"&WDIRE_FAZ\PESAGEM" ,"C","PESAGEM")
-abre(AOF,"&WDIRE_FAZ\PASTO"   ,"C","PASTO")
-abre(AOF,"&WDIRE_FAZ\LOTE"    ,"C","LOTE")
-abre(AOF,"&WDIRE_FAZ\PLANTEL" ,"C","PLANTEL")
+abre(AOF,"&WDIRE_FAZ\PESAGEM"   ,"C","PESAGEM")
+abre(AOF,"&WDIRE_FAZ\PASTO"     ,"C","PASTO")
+abre(AOF,"&WDIRE_FAZ\LOTE"      ,"C","LOTE")
+abre(AOF,"&WDIRE_FAZ\PLANTEL"   ,"C","PLANTEL")
+  
+abre(AOF,"&WDIRE_FAZ\TROCA_L"   ,"C","TROCA_L")
+abre(AOF,"&WDIRE_FAZ\TROCA_P"   ,"C","TROCA_P")
+abre(AOF,"&WDIRE_FAZ\SAIDA_P"   ,"C","SAIDA_P")
+abre(AOF,"&WDIRE_FAZ\VACINA_P"  ,"C","VACINA_P")
+abre(AOF,"&WDIRE_FAZ\ANAMNESE"  ,"C","ANAMNESE")
+  
+abre(AOF,"&WDIRE_FAZ\PRODUTOS"  ,"C","PRODUTOS")
+abre(AOF,"&WDIRE_FAZ\OUTRAS_E"  ,"C","OUTRAS_E")
+abre(AOF,"&WDIRE_FAZ\ITENS_E"   ,"C","ITENS_E")
+abre(AOF,"&WDIRE_FAZ\OUTRAS_S"  ,"C","OUTRAS_S")
+abre(AOF,"&WDIRE_FAZ\ITENS_S"   ,"C","ITENS_S")
 
-abre(AOF,"&WDIRE_FAZ\TROCA_L" ,"C","TROCA_L")
-abre(AOF,"&WDIRE_FAZ\TROCA_P" ,"C","TROCA_P")
-abre(AOF,"&WDIRE_FAZ\SAIDA_P" ,"C","SAIDA_P")
-abre(AOF,"&WDIRE_FAZ\VACINA_P","C","VACINA_P")
-abre(AOF,"&WDIRE_FAZ\ANAMNESE","C","ANAMNESE")
-
-abre(AOF,"&WDIRE_FAZ\PRODUTOS","C","PRODUTOS")
-abre(AOF,"&WDIRE_FAZ\OUTRAS_E","C","OUTRAS_E")
-abre(AOF,"&WDIRE_FAZ\ITENS_E" ,"C","ITENS_E")
-abre(AOF,"&WDIRE_FAZ\OUTRAS_S","C","OUTRAS_S")
-abre(AOF,"&WDIRE_FAZ\ITENS_S" ,"C","ITENS_S")
+abre(AOF,"&WDIRE_FAZ\BCO_SEM"   ,"C","BCO_SEM")
+abre(AOF,"&WDIRE_FAZ\ENT_BS"    ,"C","ENT_BS")
+abre(AOF,"&WDIRE_FAZ\SAI_BS"    ,"C","SAI_BS")
+abre(AOF,"&WDIRE_FAZ\REPRODUCAO","C","REPRODUCAO")
 
 return .t.
 

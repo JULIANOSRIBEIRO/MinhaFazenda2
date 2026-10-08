@@ -43,7 +43,7 @@ do while .t.
    @ 03,16 say strzero(WSEQ,6)
 
    WDATA     = DATE()
-   WBRINCO   = space(15) 
+   WBRINCO   = space(08) 
    WLOTE_ANT = 0
    WLOTE_NEW = 0
    WOBS1     = space(60)
@@ -376,7 +376,7 @@ do while .t.
 
       do while .t.
 
-         WBRINCO = space(15)
+         WBRINCO = space(08)
 
          @ 07,16 get WBRINCO picture "@!" valid busca2_BRINCO()                      
          read_f()           
@@ -576,7 +576,7 @@ do while .t.
       endif
        
       replace SEQ      with 0,;
-              BRINCO   with space(15),;
+              BRINCO   with space(08),;
               DATA     with ctod(space(08)),;
               LOTE_ANT with 0,;
               LOTE_NEW with 0,;

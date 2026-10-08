@@ -1468,11 +1468,51 @@ enddo
 
 return .t.
 
-  
+
 ****************************
 function menu_BANCO_DE_SEMEN
 ****************************
 OPC4 = 1
+
+do while .t.
+
+   private OPCAO[3]
+   OPCAO[1] = " Estoque " 
+   OPCAO[2] = " Movimenta"+chr(135)+chr(132)+"o " 
+   OPCAO[3] = " Fim " 
+
+   private LETRA[3]
+   LETRA[1] = "B"
+   LETRA[2] = "R"  
+   LETRA[3] = "F"  
+ 
+   private ACESSO[3]
+   for I = 1 to 2
+      ACESSO[I] = ver_SENHA(LETRA[I])
+   next
+
+   ACESSO[1] = .t.
+   ACESSO[2] = .f.
+   ACESSO[3] = .t.
+
+   OPC4 = achoise(OPC4,4,OPCAO,ACESSO,LETRA,.f.)
+
+   if OPC4 == 0 .or. OPC4 == 3
+      return .t.
+   elseif OPC4 == 1  
+      menu_ESTOQUE_BS()
+   elseif OPC4 == 2
+      
+   endif    
+
+enddo
+return .t.
+
+
+************************
+function menu_ESTOQUE_BS
+************************
+OPC5 = 1
 
 do while .t.
 
@@ -1496,17 +1536,17 @@ do while .t.
    next
    ACESSO[5] = .t.
 
-   OPC4 = achoise(OPC3,4,OPCAO,ACESSO,LETRA,.f.)
+   OPC5 = achoise(OPC5,5,OPCAO,ACESSO,LETRA,.f.)
 
-   if OPC4 == 0 .or. OPC4 == 5
+   if OPC5 == 0 .or. OPC5 == 5
       return .t.
-   elseif OPC4 == 1  
+   elseif OPC5 == 1  
       INC_BCO_SEMEN()
-   elseif OPC4 == 2
+   elseif OPC5 == 2
       ALT_BCO_SEMEN()
-   elseif OPC4 == 3
+   elseif OPC5 == 3
       CON_BCO_SENEN() 
-   elseif OPC4 == 4
+   elseif OPC5 == 4 
       EXC_BCO_SEMEN()
    endif    
 
@@ -1542,7 +1582,7 @@ do while .t.
    next
    ACESSO[5] = .t.
 
-   OPC4 = achoise(OPC3,4,OPCAO,ACESSO,LETRA,.f.)
+   OPC4 = achoise(OPC4,4,OPCAO,ACESSO,LETRA,.f.)
 
    if OPC4 == 0 .or. OPC4 == 5
       return .t.

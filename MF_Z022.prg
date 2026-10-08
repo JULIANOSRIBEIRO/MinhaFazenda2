@@ -18,7 +18,7 @@ WARQ  := pathTMP+"\TAB"+strzero(random()%99999,5)
    
 WCMP  := {"BRINCO", "SEXO", "PELAGEM", "IDADE", "RACA"}                   
 WTPO  := {"C"     , "C"   , "C"      , "C"    , "C"   }
-WTMO  := {15      , 05    , 20       , 20     , 30    }
+WTMO  := {08      , 05    , 20       , 20     , 30    }
 WDEC  := {00      , 00    , 00       , 00     , 00    }
     
 WIDX1 := "BRINCO"
@@ -106,11 +106,11 @@ ordsetfocus("SINC001")
 go top
 
 BRW_HELP(alltrim(det_PASTO)+"|M: "+str(WTOTAL_M,3)+"|F:"+str(WTOTAL_F,3),.t., {;
-{"BRINCO" ,"","Brinco"         },;
-{"SEXO"   ,"","Sexo"           },;
-{"PELAGEM","","Pelagem"        },;
-{"IDADE"  ,"","Idade"          },;
-{"RACA"   ,"","Ra"+chr(135)+"a"}})
+{"BRINCO" ,"99999999","Brinco"         },;
+{"SEXO"   ,""        ,"Sexo"           },;
+{"PELAGEM",""        ,"Pelagem"        },;
+{"IDADE"  ,""        ,"Idade"          },;
+{"RACA"   ,""        ,"Ra"+chr(135)+"a"}})
  
 @ 24,00 clear to 24,79
 if CONFIRMA(24,"Imprimir rela"+chr(135)+chr(132)+"o de animais do pasto...(S/N)?","N") == "S"
@@ -140,7 +140,7 @@ WARQ  := pathTMP+"\TAB"+strzero(random()%99999,5)
    
 WCMP  := {"BRINCO", "SEXO", "PELAGEM", "IDADE", "RACA"}                   
 WTPO  := {"C"     , "C"   , "C"      , "C"    , "C"   }
-WTMO  := {15      , 05    , 20       , 20     , 30    }
+WTMO  := {08      , 05    , 20       , 20     , 30    }
 WDEC  := {00      , 00    , 00       , 00     , 00    }
     
 WIDX1 := "BRINCO"
@@ -228,11 +228,11 @@ ordsetfocus("SINC001")
 go top
 
 BRW_HELP(alltrim(det_LOTE)+"|M: "+str(WTOTAL_M,3)+"|F:"+str(WTOTAL_F,3),.t., {;
-{"BRINCO" ,"","Brinco"         },;
-{"SEXO"   ,"","Sexo"           },;
-{"PELAGEM","","Pelagem"        },;
-{"IDADE"  ,"","Idade"          },;
-{"RACA"   ,"","Ra"+chr(135)+"a"}})
+{"BRINCO" ,"99999999","Brinco"         },;
+{"SEXO"   ,""        ,"Sexo"           },;
+{"PELAGEM",""        ,"Pelagem"        },;
+{"IDADE"  ,""        ,"Idade"          },;
+{"RACA"   ,""        ,"Ra"+chr(135)+"a"}})
  
 @ 24,00 clear to 24,79
 if CONFIRMA(24,"Imprimir rela"+chr(135)+chr(132)+"o de animais do lote...(S/N)?","N") == "S"
@@ -262,7 +262,7 @@ WARQ  := pathTMP+"\TAB"+strzero(random()%99999,5)
    
 WCMP  := {"BRINCO", "SEXO", "PELAGEM", "IDADE", "RACA"}                   
 WTPO  := {"C"     , "C"   , "C"      , "C"    , "C"   }
-WTMO  := {15      , 05    , 20       , 20     , 30    }
+WTMO  := {08      , 05    , 20       , 20     , 30    }
 WDEC  := {00      , 00    , 00       , 00     , 00    }
     
 WIDX1 := "BRINCO"
@@ -350,11 +350,11 @@ ordsetfocus("SINC001")
 go top
 
 BRW_HELP(alltrim(det_RACA)+"|M: "+str(WTOTAL_M,3)+"|F:"+str(WTOTAL_F,3),.t., {;
-{"BRINCO" ,"","Brinco"         },;
-{"SEXO"   ,"","Sexo"           },;
-{"PELAGEM","","Pelagem"        },;
-{"IDADE"  ,"","Idade"          },;
-{"RACA"   ,"","Ra"+chr(135)+"a"}})
+{"BRINCO" ,"99999999","Brinco"         },;
+{"SEXO"   ,""        ,"Sexo"           },;
+{"PELAGEM",""        ,"Pelagem"        },;
+{"IDADE"  ,""        ,"Idade"          },;
+{"RACA"   ,""        ,"Ra"+chr(135)+"a"}})
  
 @ 24,00 clear to 24,79
 if CONFIRMA(24,"Imprimir rela"+chr(135)+chr(132)+"o de animais por ra"+chr(135)+"a...(S/N)?","N") == "S"
@@ -384,7 +384,7 @@ WARQ  := pathTMP+"\TAB"+strzero(random()%99999,5)
    
 WCMP  := {"BRINCO", "SEXO", "PELAGEM", "IDADE", "RACA"}                   
 WTPO  := {"C"     , "C"   , "C"      , "C"    , "C"   }
-WTMO  := {15      , 05    , 20       , 20     , 30    }
+WTMO  := {08      , 05    , 20       , 20     , 30    }
 WDEC  := {00      , 00    , 00       , 00     , 00    }
     
 WIDX1 := "BRINCO"
@@ -472,11 +472,11 @@ ordsetfocus("SINC001")
 go top
 
 BRW_HELP(alltrim(det_RACA)+"|M: "+str(WTOTAL_M,3)+"|F:"+str(WTOTAL_F,3),.t., {;
-{"BRINCO" ,"","Brinco"         },;
-{"SEXO"   ,"","Sexo"           },;
-{"PELAGEM","","Pelagem"        },;
-{"IDADE"  ,"","Idade"          },;
-{"RACA"   ,"","Ra"+chr(135)+"a"}})
+{"BRINCO" ,"99999999","Brinco"         },;
+{"SEXO"   ,""        ,"Sexo"           },;
+{"PELAGEM",""        ,"Pelagem"        },;
+{"IDADE"  ,""        ,"Idade"          },;
+{"RACA"   ,""        ,"Ra"+chr(135)+"a"}})
  
 @ 24,00 clear to 24,79
 if CONFIRMA(24,"Imprimir rela"+chr(135)+chr(132)+"o de animais do grupo...(S/N)?","N") == "S"

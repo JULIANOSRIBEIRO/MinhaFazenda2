@@ -42,7 +42,7 @@ do while .t.
    setcolor(COR_TEXT)
    @ 03,13 say strzero(WSEQ,6)
 
-   WBRINCO  = space(15) 
+   WBRINCO  = space(08) 
    WDATA    = ctod(space(08))
    WVACINA  = 0
    WPROXIMA = ctod(space(08))
@@ -52,7 +52,7 @@ do while .t.
 
       setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
-      @ 05,13 get WBRINCO    picture "@!"      valid busca5_BRINCO()
+      @ 05,13 get WBRINCO    picture "99999999" valid busca5_BRINCO()
       @ 07,13 get WDATA
       @ 09,13 get WVACINA    picture "@Z 999"   valid busca5_VACINA()
       @ 13,13 get WOBS1   
@@ -99,29 +99,6 @@ enddo
 
 return .t.
 
-**********************
-function busca5_BRINCO
-**********************
-
-if lastkey() == 27
-   return .t.
-endif
-
-if empty(WBRINCO)
-   help_BRINCO()
-   return .f.
-endif
-
-select PLANTEL
-ordsetfocus("SINC001")
-seek WBRINCO
-
-if ! found()
-   mensagem("AVISO!;N"+chr(163)+"mero de brinco n"+chr(132)+"o cadastrado no plantel.")
-   return .f.
-endif
-
-return .t.
 
 **********************
 function busca5_VACINA
@@ -202,7 +179,7 @@ do while .t.
 
       setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
        
-      @ 05,13 get WBRINCO    picture "@!"       valid busca5_BRINCO()
+      @ 05,13 get WBRINCO    picture "99999999" valid busca5_BRINCO()
       @ 07,13 get WDATA
       @ 09,13 get WVACINA    picture "@Z 999"   valid busca5_VACINA()
       @ 13,13 get WOBS1   
@@ -309,9 +286,9 @@ do while .t.
 
       do while .t.
 
-         WBRINCO = space(15)
+         WBRINCO = space(08)
 
-         @ 05,13 get WBRINCO picture "@!" valid busca3_BRINCO()                      
+         @ 05,13 get WBRINCO picture "99999999" valid busca3_BRINCO()                      
          read_f()           
   
          if empty(WBRINCO) .or. lastkey() == 27
@@ -368,7 +345,7 @@ do while .t.
       CENTRO(24,"PgDw-Pr"+chr(162)+"ximo   PgUp-Anterior   ESC-FIM")
 
       @ 03,13 say strzero(SEQ,6)
-      @ 05,13 say BRINCO picture "@!" 
+      @ 05,13 say BRINCO picture "99999999" 
       @ 07,13 say DATA
       @ 09,13 say VACINA picture "999" 
       @ 11,13 say PROXIMA
@@ -439,7 +416,7 @@ do while .t.
    endif
 
    @ 03,13 say strzero(SEQ,6)
-   @ 05,13 say BRINCO picture "@!" 
+   @ 05,13 say BRINCO picture "99999999" 
    @ 07,13 say DATA
    @ 09,13 say VACINA picture "999" 
    @ 11,13 say PROXIMA
@@ -470,7 +447,7 @@ do while .t.
        
       replace SEQ       with 0,;
               DATA      with ctod(space(08)),;
-              BRINCO    with space(15),;
+              BRINCO    with space(08),;
               VACINA    with 0,;
               PROXIMA  with ctod(space(08)),;
               OBS1      with space(60),;

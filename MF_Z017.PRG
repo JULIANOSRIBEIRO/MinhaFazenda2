@@ -1,6 +1,6 @@
 *********************************************************************
 ****  Sistema......: SINCON-Sistema Integrado de Controle        ****
-****  Programa.....: MF_Z014.PRG                                 ****
+****  Programa.....: MF_Z017.PRG                                 ****
 ****  Finalidade...: Cadastro de Anamnese (Sintoma/Tratamento)   ****
 ****  Desenvolvedor: Juliano Ribeiro                             ****
 ****  Versao.......: xHARBOUR                                    ****
@@ -32,7 +32,7 @@ do while .t.
 
    sc_ANAMNESE()
    
-   select ANAMNESE
+   select REPRODUCAO               
    ordsetfocus("SINC001")
    go bottom
 
@@ -41,7 +41,7 @@ do while .t.
    setcolor(COR_TEXT)
    @ 03,13 say strzero(WSEQ,6)
 
-   WBRINCO   = space(15) 
+   WBRINCO   = space(08) 
    WDATA     = ctod(space(08))
    WCOD_SINT = 0
    WTRAT1    = space(60)
@@ -53,7 +53,7 @@ do while .t.
 
       setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
-      @ 05,13 get WBRINCO    picture "@!"      valid busca5_BRINCO()
+      @ 05,13 get WBRINCO    picture "99999999" valid busca5_BRINCO()
       @ 07,13 get WDATA
       @ 09,13 get WCOD_SINT  picture "@Z 999"   valid busca_SINTOMA()
       @ 11,13 get WTRAT1
@@ -113,6 +113,8 @@ endif
 
 if empty(WCOD_SINT)
    help_SINTOMA()
+   select SINTOMA
+   WCOD_SINT = CODIGO
    return .f.
 endif
 
@@ -179,7 +181,7 @@ do while .t.
 
       setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
        
-      @ 05,13 get WBRINCO    picture "@!"       valid busca5_BRINCO()
+      @ 05,13 get WBRINCO    picture "99999999" valid busca5_BRINCO()
       @ 07,13 get WDATA
       @ 09,13 get WCOD_SINT  picture "@Z 999"   valid busca_SINTOMA()
       @ 11,13 get WTRAT1
@@ -285,13 +287,13 @@ do while .t.
       exit
       enddo
 
-   elseif WOPC == 2
+   elseif WOPC == 4
 
       do while .t.
 
-         WBRINCO = space(15)
+         WBRINCO = space(08)
 
-         @ 05,13 get WBRINCO picture "@!" valid busca3_BRINCO()                      
+         @ 05,13 get WBRINCO picture "99999999" valid busca3_BRINCO()                      
          read_f()           
   
          if empty(WBRINCO) .or. lastkey() == 27
@@ -311,7 +313,7 @@ do while .t.
       exit 
       enddo
 
-   elseif WOPC == 3
+   elseif WOPC == 5
  
       do while .t.
 
@@ -348,7 +350,7 @@ do while .t.
       CENTRO(24,"PgDw-Pr"+chr(162)+"ximo   PgUp-Anterior   ESC-FIM")
 
       @ 03,13 say strzero(SEQ,6)
-      @ 05,13 say BRINCO   picture "@!" 
+      @ 05,13 say BRINCO   picture "99999999" 
       @ 07,13 say DATA
       @ 09,13 say COD_SINT picture "999" 
       @ 11,13 say TRAT1   
@@ -421,7 +423,7 @@ do while .t.
    endif
   
    @ 03,13 say strzero(SEQ,6)
-   @ 05,13 say BRINCO   picture "@!" 
+   @ 05,13 say BRINCO   picture "99999999" 
    @ 07,13 say DATA
    @ 09,13 say COD_SINT picture "999" 
    @ 11,13 say TRAT1   
@@ -454,7 +456,7 @@ do while .t.
        
       replace SEQ       with 0,;
               DATA      with ctod(space(08)),;
-              BRINCO    with space(15),;
+              BRINCO    with space(08),;
               COD_SINT  with 0,;
               TRAT1     with space(60),;
               TRAT2     with space(60),;
@@ -465,7 +467,16 @@ do while .t.
               TIME_INC  with space(08),;
               USER_ALT  with space(20),;
               DATE_ALT  with ctod(space(08)),;
-              TIME_ALT  with space(08)
+              TIME_ALT  with space(08),;
+              USER_CAN  with space(20),;
+              DATE_CAN  with ctod(space(08)),;
+              TIME_CAN  with space(08),;
+              USER_EXC  with space(20),;
+              DATE_EXC  with ctod(space(08)),;
+              TIME_EXC  with space(08),;
+              USER_BX   with space(20),;
+              DATE_BX   with ctod(space(08)),;
+              TIME_BX   with space(08)
       delete
       grava()
 
