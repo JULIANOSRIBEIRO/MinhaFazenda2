@@ -550,8 +550,11 @@ CENTRO(20,"Confirma"+chr(135)+chr(132)+"o da Preenhez")
 setcolor(COR_TEXT)
 
 @ 21,01 say "Confirmado.?"
-@ 21,61 say "Data:"
+@ 21,19 say "Tempo Gesta"+chr(135)+chr(132)+"o:"
+@ 21,55 say "Parto Previsto:"
+
 @ 22,01 say "Respons"+chr(160)+"vel:"
+@ 22,55 say "Data Registro.:"
 
 return .t.
 
@@ -586,9 +589,11 @@ do while .t.
    WOBS5       = space(78)
 
    WCONFIRMA   = space(01) 
-   WDATA_CONF  = ctod(space(08))
+   WTEMPO_GES  = space(15)
+   WPREV_PARTO = ctod(space(08))
    WRESPONS    = space(50) 
- 
+   WDATA_CONF  = ctod(space(08))
+
    select REPRODUCAO
    ordsetfocus("SINC001")
    go bottom
@@ -607,8 +612,8 @@ do while .t.
 
       @ 03,13 get WBRINCO picture "@!" valid busca6_BRINCO() .and. checaSeFemea()
       
-      @ 03,65,09,78 get WTIPO;                                  
-         LISTBOX {"Protocolo   ", "Cobertura   ", "Inserminacao", "Transplante "};
+      @ 03,65,11,78 get WTIPO;                                  
+         LISTBOX {"Protocolo   ", "Cobertura   ", "Inserminacao", "Transplante ", "Descarte    ", "Preenhez    "};
          DROPDOWN SCROLLBAR;
          COLOR COR_TEXT+","+COR_TEXT+","+COR_TEXT+","+COR_GETS+","+COR_DEST+",N/W,R/B,"+COR_TEXT;
          MESSAGE "pressione BARRA DE ESPA"+chr(128)+"O para listar as op"+chr(135)+chr(148)+"es v"+chr(160)+"lidas."; 
@@ -647,8 +652,30 @@ do while .t.
       read_f()
 
       if lastkey() == 27
-         return .t.
+         loop
       endif
+
+      if alltrim(WTIPO) $ "Descarte-Preenhez"
+
+         @ 21,14 get WCONFIRMA  picture "!"  valid confirmaReproducao()
+         @ 21,36 get WTEMPO_GES picture "@!" when WCONFIRMA == "S"
+         @ 21,71 get WPREV_PARTO             when WCONFIRMA == "S"
+
+         @ 22,14 get WRESPONS   picture "@S38"
+         @ 22,71 get WDATA_CONF 
+         read_f()
+
+         if WCONFIRMA == "N"
+            WTEMPO_GES  = space(15) 
+            WPREV_PARTO = ctod(space(08))
+            @ 21,36 say WTEMPO_GES picture "@!"  
+            @ 21,71 say WPREV_PARTO             
+         endif 
+
+         if lastkey() == 27
+            loop
+         endif
+      endif 
 
       if CONFIRMA(24,"Dados corretos...(S/N)?","S") = "S"
           
@@ -716,17 +743,37 @@ do while .t.
    @ 02,13 get WSEQ picture "@Z 999999"
    read_f() 
 
-   if empty(WSEQ) .or. lastkey() == 27
+   if lastkey() == 27
       return .t.
    endif
 
-   select REPRODUCAO
-   ordsetfocus("SINC001")
-   seek WSEQ 
+   if ! empty(WSEQ)
+      select REPRODUCAO
+      ordsetfocus("SINC001")
+      seek WSEQ 
 
-   if ! found()
-      MENSAGEM("ERRO!;Sequ"+chr(136)+"ncia de controle n"+chr(132)+"o cadastrada!",0)
-      loop
+      if ! found()
+         MENSAGEM("ERRO!;Sequ"+chr(136)+"ncia de controle n"+chr(132)+"o cadastrada!",0)
+         loop
+      endif 
+   else  
+      WBRINCO = space(15)
+
+      @ 03,13 get WBRINCO picture "@!"          
+      read_f()           
+  
+      if empty(WBRINCO) .or. lastkey() == 27
+         loop
+      endif
+
+      select REPRODUCAO
+      ordsetfocus("SINC003")
+      seek WBRINCO 
+
+      if ! found()
+         MENSAGEM("ERRO!;N"+chr(132)+"o houve lan"+chr(135)+"amento de reprodu"+chr(135)+chr(132)+"o para esse brinco!",0)
+         loop
+      endif 
    endif 
 
    WDATA       = DATA      
@@ -752,8 +799,10 @@ do while .t.
    WOBS5       = OBS5      
 
    WCONFIRMA   = CONFIRMA  
-   WDATA_CONF  = DATA_CONF 
+   WTEMPO_GES  = TEMPO_GES 
+   WPREV_PARTO = PREV_PARTO 
    WRESPONS    = RESPONS   
+   WDATA_CONF  = DATA_CONF 
 
    // var para estorno de estoque 
    oldTIPO     = TIPO 
@@ -766,8 +815,8 @@ do while .t.
 
       setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
-      @ 03,65,09,78 get WTIPO;                                  
-         LISTBOX {"Protocolo   ", "Cobertura   ", "Inserminacao", "Transplante "};
+      @ 03,65,11,78 get WTIPO;      
+         LISTBOX {"Protocolo   ", "Cobertura   ", "Inserminacao", "Transplante ", "Descarte    ", "Preenhez    "};
          DROPDOWN SCROLLBAR;
          COLOR COR_TEXT+","+COR_TEXT+","+COR_TEXT+","+COR_GETS+","+COR_DEST+",N/W,R/B,"+COR_TEXT;
          MESSAGE "pressione BARRA DE ESPA"+chr(128)+"O para listar as op"+chr(135)+chr(148)+"es v"+chr(160)+"lidas."; 
@@ -809,6 +858,25 @@ do while .t.
          return .t.
       endif
 
+      @ 21,14 get WCONFIRMA  picture "!"  valid confirmaReproducao()
+      @ 21,36 get WTEMPO_GES picture "@!" when WCONFIRMA == "S"
+      @ 21,71 get WPREV_PARTO             when WCONFIRMA == "S"
+
+      @ 22,14 get WRESPONS   picture "@S38"
+      @ 22,71 get WDATA_CONF 
+      read_f()
+
+      if WCONFIRMA == "N"
+         WTEMPO_GES  = space(15) 
+         WPREV_PARTO = ctod(space(08))
+         @ 21,36 say WTEMPO_GES picture "@!"  
+         @ 21,71 say WPREV_PARTO             
+      endif 
+
+      if lastkey() == 27
+         loop
+      endif
+      
       if CONFIRMA(24,"Dados corretos...(S/N)?","S") = "S"
           
          select REPRODUCAO
@@ -972,7 +1040,7 @@ do while .t.
 
       do while .t.
 
-         WBRINCO = space(08)
+         WBRINCO = space(15)
 
          @ 03,13 get WBRINCO picture "@!" valid busca6_BRINCO() .and. checaSeFemea()                     
          read_f()           
@@ -1121,15 +1189,17 @@ endif
 
 @ 24,00 clear to 24,79
 
-WOBS1      = OBS1      
-WOBS2      = OBS2      
-WOBS3      = OBS3      
-WOBS4      = OBS4      
-WOBS5      = OBS5   
-WCONFIRMA  = CONFIRMA  
-WDATA_CONF = DATA_CONF 
-WRESPONS   = RESPONS   
-
+WOBS1       = OBS1      
+WOBS2       = OBS2      
+WOBS3       = OBS3      
+WOBS4       = OBS4      
+WOBS5       = OBS5   
+WCONFIRMA   = CONFIRMA 
+WTEMPO_GES  = TEMPO_GES
+WPREV_PARTO = PREV_PARTO   
+WRESPONS    = RESPONS  
+WDATA_CONF  = DATA_CONF 
+ 
 do while .t.
 
    setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
@@ -1140,24 +1210,36 @@ do while .t.
    @ 18,01 get WOBS4 
    @ 19,01 get WOBS5 
 
-   @ 21,14 get WCONFIRMA picture "!"  valid confirmaReproducao()
-   @ 21,67 get WDATA_CONF 
-   @ 22,14 get WRESPONS  
+   @ 21,14 get WCONFIRMA  picture "!"  valid confirmaReproducao()
+   @ 21,36 get WTEMPO_GES picture "@!" when WCONFIRMA == "S"
+   @ 21,71 get WPREV_PARTO             when WCONFIRMA == "S"
+
+   @ 22,14 get WRESPONS   picture "@S38"
+   @ 22,71 get WDATA_CONF 
    read_f()
+
+   if WCONFIRMA == "N"
+      WTEMPO_GES  = space(15) 
+      WPREV_PARTO = ctod(space(08))
+      @ 21,36 say WTEMPO_GES picture "@!"  
+      @ 21,71 say WPREV_PARTO             
+   endif 
 
    if CONFIRMA(24,"Dados corretos...(S/N)?","S") = "S"
       select REPRODUCAO
-      replace OBS1      with WOBS1,; 
-              OBS2      with WOBS2,; 
-              OBS3      with WOBS3,; 
-              OBS4      with WOBS4,; 
-              OBS5      with WOBS5,; 
-              CONFIRMA  with WCONFIRMA,;  
-              DATA_CONF with WDATA_CONF,; 
-              RESPONS   with WRESPONS,;  
-              USER_ALT  with WPUSUARIO,;
-              DATE_ALT  with DATE(),;
-              TIME_ALT  with TIME()
+      replace OBS1       with WOBS1,; 
+              OBS2       with WOBS2,; 
+              OBS3       with WOBS3,; 
+              OBS4       with WOBS4,; 
+              OBS5       with WOBS5,; 
+              CONFIRMA   with WCONFIRMA,;  
+              TEMPO_GES  with WTEMPO_GES,;
+              PREV_PARTO with WPREV_PARTO,;
+              RESPONS    with WRESPONS,;  
+              DATA_CONF  with WDATA_CONF,; 
+              USER_ALT   with WPUSUARIO,;
+              DATE_ALT   with DATE(),;
+              TIME_ALT   with TIME()
       grava() 
       exit 
    endif 
@@ -1203,8 +1285,10 @@ WOBS4       = OBS4
 WOBS5       = OBS5      
 
 WCONFIRMA   = CONFIRMA  
-WDATA_CONF  = DATA_CONF 
+WTEMPO_GES  = TEMPO_GES 
+WPREV_PARTO = PREV_PARTO
 WRESPONS    = RESPONS   
+WDATA_CONF  = DATA_CONF 
 
 // var para estorno de estoque 
 oldTIPO     = TIPO 
@@ -1215,8 +1299,8 @@ do while .t.
 
    setcolor(COR_TEXT+","+COR_GETS+",,,"+COR_TEXT)
 
-   @ 03,65,09,78 get WTIPO;                                  
-      LISTBOX {"Protocolo   ", "Cobertura   ", "Inserminacao", "Transplante "};
+   @ 03,65,11,78 get WTIPO;    
+      LISTBOX {"Protocolo   ", "Cobertura   ", "Inserminacao", "Transplante ", "Descarte    ", "Preenhez    "};
       DROPDOWN SCROLLBAR;
       COLOR COR_TEXT+","+COR_TEXT+","+COR_TEXT+","+COR_GETS+","+COR_DEST+",N/W,R/B,"+COR_TEXT;
       MESSAGE "pressione BARRA DE ESPA"+chr(128)+"O para listar as op"+chr(135)+chr(148)+"es v"+chr(160)+"lidas."; 
@@ -1255,6 +1339,28 @@ do while .t.
       grava()
       return .t.
    endif
+
+   if alltrim(WTIPO) $ "Descarte-Preenhez"
+
+      @ 21,14 get WCONFIRMA  picture "!"  valid confirmaReproducao()
+      @ 21,36 get WTEMPO_GES picture "@!" when WCONFIRMA == "S"
+      @ 21,71 get WPREV_PARTO             when WCONFIRMA == "S"
+
+      @ 22,14 get WRESPONS   picture "@S38"
+      @ 22,71 get WDATA_CONF 
+      read_f()
+
+      if WCONFIRMA == "N"
+         WTEMPO_GES  = space(15) 
+         WPREV_PARTO = ctod(space(08))
+         @ 21,36 say WTEMPO_GES picture "@!"  
+         @ 21,71 say WPREV_PARTO             
+      endif 
+
+      if lastkey() == 27
+         loop
+      endif
+   endif 
 
    if CONFIRMA(24,"Dados corretos...(S/N)?","S") = "S"
           
@@ -1364,8 +1470,10 @@ do while .t.
               OBS4       with space(78),; 
               OBS5       with space(78),; 
               CONFIRMA   with space(01),;  
-              DATA_CONF  with ctod(space(08)),; 
+              TEMPO_GES  with space(15),;
+              PREV_PARTO with ctod(space(08)),; 
               RESPONS    with space(50),;  
+              DATA_CONF  with ctod(space(08)),; 
               USER_INC   with space(20),;
               DATE_INC   with ctod(space(08)),;
               TIME_INC   with space(08),;
@@ -1468,6 +1576,27 @@ elseif alltrim(WTIPO) == "Transplante"
    ColorWin(04,01,04,78,COR_CONS)
    ColorWin(07,01,07,78,COR_CONS)
    ColorWin(10,01,10,78,"W+/N")
+else 
+   WIA_LOTE    = space(20) 
+   WIA_DOSE    = 0 
+   WIA_METODO  = space(15)
+   WIA_TOURO   = space(50)
+   WTE_TOURO   = space(50) 
+   WTE_MAE     = space(50)
+   WTE_RECEP   = space(50) 
+   WCN_TOURO   = space(50)
+   WCN_COMUNIC = ctod(space(08))
+   WCN_NUMERO  = space(20) 
+   WTE_TOURO   = space(50) 
+   WTE_MAE     = space(50)
+   WTE_RECEP   = space(50) 
+   WCN_TOURO   = space(50)
+   WCN_COMUNIC = ctod(space(08))
+   WCN_NUMERO  = space(20)   
+   WIA_LOTE    = space(20) 
+   WIA_DOSE    = 0 
+   WIA_METODO  = space(15)
+   WIA_TOURO   = space(50)
 endif 
 
 @ 05,16 say WCN_TOURO    
@@ -1583,7 +1712,7 @@ function exibeDadosDaReproducao
 @ 02,13 say strzero(SEQ,6)
 @ 02,65 say DATA 
 
-@ 03,13 say BRINCO picture "99999999" 
+@ 03,13 say BRINCO 
 @ 03,65 say TIPO
 
 if alltrim(TIPO) == "Cobertura"
@@ -1622,8 +1751,10 @@ endif
 @ 19,01 say OBS5 
 
 @ 21,14 say if(CONFIRMA == "S","Sim","N"+chr(132)+"o")  
-@ 21,67 say DATA_CONF 
-@ 22,14 say RESPONS  
+@ 21,36 say TEMPO_GES picture "@!" 
+@ 21,71 say PREV_PARTO             
+@ 22,14 say RESPONS   picture "@S38" 
+@ 22,71 say DATA_CONF 
 
 return .t.
 
@@ -1657,8 +1788,10 @@ replace BRINCO     with WBRINCO,;
         OBS4       with WOBS4,; 
         OBS5       with WOBS5,; 
         CONFIRMA   with WCONFIRMA,;  
-        DATA_CONF  with WDATA_CONF,; 
-        RESPONS    with WRESPONS   
+        TEMPO_GES  with WTEMPO_GES,;
+        PREV_PARTO with WPREV_PARTO,;
+        RESPONS    with WRESPONS,;
+        DATA_CONF  with WDATA_CONF  
  
 if MODULO == "INC" 
    replace USER_INC with WPUSUARIO,;

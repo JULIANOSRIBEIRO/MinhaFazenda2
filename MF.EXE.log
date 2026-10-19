@@ -1,11 +1,130 @@
 
-Type: C >>>xhb.exe -o"Building\OBJ\MF_Z010.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z010.PRG"<<<
+Type: C >>>xhb.exe -o"Building\OBJ\MF.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_M001.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_M001.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_M001.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_M099.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_M099.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_M099.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_R011.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_R011.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_R011.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z009.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z009.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z009.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z010.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z010.PRG"<<<
 
 xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
 Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
 Generating object output to 'Building\OBJ\MF_Z010.obj'...
 
-Type: C >>>xlink.exe -NOEXPOBJ -MAP -FORCE:MULTIPLE -NOIMPLIB -subsystem:console -LIBPATH:"C:\xHB\lib" -LIBPATH:"C:\xHB\c_lib" -LIBPATH:"C:\xHB\c_lib\win"  "Building\OBJ\MF.obj" "Building\OBJ\MF_M001.obj" "Building\OBJ\MF_M099.obj" "Building\OBJ\MF_R011.obj" "Building\OBJ\MF_Z010.obj" "Building\OBJ\MF_Z011.obj" "Building\OBJ\MF_Z012.obj" "Building\OBJ\MF_Z099.obj" "Building\OBJ\MF_Z180.obj" "Building\OBJ\MF_Z181.obj" "Building\OBJ\MF_Z190.obj" "Building\OBJ\MF_Z013.obj" "Building\OBJ\MF_Z014.obj" "Building\OBJ\MF_Z015.obj" "Building\OBJ\MF_Z016.obj" "Building\OBJ\MF_R012.obj" "Building\OBJ\MF_Z020.obj" "C:\GS-Work\Fonte\GS\Oraculo-Icone\ORACULO.RES" "xhb.lib" "dbf.lib" "nsx.lib" "ntx.lib" "cdx.lib" "rmdbfcdx.lib" "ct3comm.lib" crt.lib kernel32.lib user32.lib winspool.lib ole32.lib oleaut32.lib odbc32.lib odbccp32.lib uuid.lib wsock32.lib ws2_32.lib wininet.lib advapi32.lib shlwapi.lib msimg32.lib mpr.lib OleDlg.lib version.lib -out:"C:\MF\MF.EXE"<<<
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z011.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z011.PRG"<<<
 
-xLINK: warning: Symbol '(MF_Z016.obj)->_HB_FUN_BUSCA5_BRINCO previously defined at (MF_Z010.obj)' is multiply defined.
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z011.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z012.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z012.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z012.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z099.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z099.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z099.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z180.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z180.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z180.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z181.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z181.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z181.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z190.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z190.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z190.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z013.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z013.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z013.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z014.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z014.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z014.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z015.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z015.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z015.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z016.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z016.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z016.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_R012.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_R012.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_R012.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z020.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z020.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z020.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z023.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z023.prg"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z023.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z017.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z017.PRG"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z017.obj'...
+
+Type: C >>>xhb.exe -o"Building\OBJ\MF_Z024.c" -m -n -pOBuilding\OBJ\ -q -gc0  -I"C:\xHB\Include"  -I"C:\xHB\include" -I"C:\xHB\include\w32" "C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z024.prg"<<<
+
+xHarbour 1.2.3 Intl. (SimpLex) (Build 20190614)
+Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/
+Generating object output to 'Building\OBJ\MF_Z024.obj'...
+
+Type: C >>>xlink.exe -NOEXPOBJ -MAP -FORCE:MULTIPLE -NOIMPLIB -subsystem:console -LIBPATH:"C:\xHB\lib" -LIBPATH:"C:\xHB\c_lib" -LIBPATH:"C:\xHB\c_lib\win"  "Building\OBJ\MF.obj" "Building\OBJ\MF_M001.obj" "Building\OBJ\MF_M099.obj" "Building\OBJ\MF_R011.obj" "Building\OBJ\MF_Z009.obj" "Building\OBJ\MF_Z010.obj" "Building\OBJ\MF_Z011.obj" "Building\OBJ\MF_Z012.obj" "Building\OBJ\MF_Z099.obj" "Building\OBJ\MF_Z180.obj" "Building\OBJ\MF_Z181.obj" "Building\OBJ\MF_Z190.obj" "Building\OBJ\MF_Z013.obj" "Building\OBJ\MF_Z014.obj" "Building\OBJ\MF_Z015.obj" "Building\OBJ\MF_Z016.obj" "Building\OBJ\MF_R012.obj" "Building\OBJ\MF_Z020.obj" "Building\OBJ\MF_Z023.obj" "Building\OBJ\MF_Z017.obj" "Building\OBJ\MF_Z024.obj" "C:\GS-Work\Fonte\GS\Oraculo-Icone\ORACULO.RES" "xhb.lib" "dbf.lib" "nsx.lib" "ntx.lib" "cdx.lib" "rmdbfcdx.lib" "ct3comm.lib" crt.lib kernel32.lib user32.lib winspool.lib ole32.lib oleaut32.lib odbc32.lib odbccp32.lib uuid.lib wsock32.lib ws2_32.lib wininet.lib advapi32.lib shlwapi.lib msimg32.lib mpr.lib OleDlg.lib version.lib -out:"C:\GS-Homologa\MF\MF.EXE"<<<
+
 xLINK: warning: Symbol '(MF_R012.obj)->_HB_FUN_CAB_SAIDA previously defined at (MF_R011.obj)' is multiply defined.

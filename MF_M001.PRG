@@ -1492,7 +1492,7 @@ do while .t.
    next
 
    ACESSO[1] = .t.
-   ACESSO[2] = .f.
+   ACESSO[2] = .t.
    ACESSO[3] = .t.
 
    OPC4 = achoise(OPC4,4,OPCAO,ACESSO,LETRA,.f.)
@@ -1502,10 +1502,144 @@ do while .t.
    elseif OPC4 == 1  
       menu_ESTOQUE_BS()
    elseif OPC4 == 2
-      
+      menu_MOV_BS()
    endif    
 
 enddo
+
+return .t.
+
+
+********************
+function menu_MOV_BS
+********************
+OPC5 = 1
+
+do while .t.
+
+   private OPCAO[3]
+   OPCAO[1] = " Entrada (BS)" 
+   OPCAO[2] = " Saida (BS) " 
+   OPCAO[3] = " Fim " 
+
+   private LETRA[3]
+   LETRA[1] = "E"
+   LETRA[2] = "S"  
+   LETRA[3] = "F"  
+ 
+   private ACESSO[3]
+   for I = 1 to 2
+      ACESSO[I] = ver_SENHA(LETRA[I])
+   next
+
+   ACESSO[1] = .t.
+   ACESSO[2] = .t.
+   ACESSO[3] = .t.
+
+   OPC5 = achoise(OPC5,5,OPCAO,ACESSO,LETRA,.f.)
+
+   if OPC5 == 0 .or. OPC5 == 3
+      return .t.
+   elseif OPC5 == 1  
+      menu_ENTRADA_BS()
+   elseif OPC5 == 2
+      menu_SAIDA_BS()
+   endif    
+
+enddo
+
+return .t.
+
+
+************************
+function menu_ENTRADA_BS
+************************
+OPC6 = 1
+
+do while .t.
+
+   private OPCAO[5]
+   OPCAO[1] = " Inclus"+chr(132)+"o " 
+   OPCAO[2] = " Altera"+chr(135)+chr(132)+"o " 
+   OPCAO[3] = " Consulta " 
+   OPCAO[4] = " Exclus"+chr(132)+"o " 
+   OPCAO[5] = " Fim " 
+
+   private LETRA[5]
+   LETRA[1] = "I"
+   LETRA[2] = "A"
+   LETRA[3] = "C"  
+   LETRA[4] = "E"  
+   LETRA[5] = "F"  
+ 
+   private ACESSO[5]
+   for I = 1 to 4
+      ACESSO[I] = ver_SENHA(LETRA[I])
+   next
+   ACESSO[5] = .t.
+
+   OPC6 = achoise(OPC6,6,OPCAO,ACESSO,LETRA,.f.)
+
+   if OPC6 == 0 .or. OPC6 == 5
+      return .t.
+   elseif OPC6 == 1  
+      INC_ENTRADA_BS()
+   elseif OPC6 == 2
+      ALT_ENTRADA_BS()
+   elseif OPC6 == 3
+      CON_ENTRADA_BS()
+   elseif OPC6 == 4 
+      EXC_ENTRADA_BS()
+   endif    
+
+enddo
+
+return .t.
+
+
+**********************
+function menu_SAIDA_BS
+**********************
+OPC6 = 1
+
+do while .t.
+
+   private OPCAO[5]
+   OPCAO[1] = " Inclus"+chr(132)+"o " 
+   OPCAO[2] = " Altera"+chr(135)+chr(132)+"o " 
+   OPCAO[3] = " Consulta " 
+   OPCAO[4] = " Exclus"+chr(132)+"o " 
+   OPCAO[5] = " Fim " 
+
+   private LETRA[5]
+   LETRA[1] = "I"
+   LETRA[2] = "A"
+   LETRA[3] = "C"  
+   LETRA[4] = "E"  
+   LETRA[5] = "F"  
+ 
+   private ACESSO[5]
+   for I = 1 to 4
+      ACESSO[I] = ver_SENHA(LETRA[I])
+   next
+   ACESSO[5] = .t.
+
+   OPC6 = achoise(OPC6,6,OPCAO,ACESSO,LETRA,.f.)
+
+   if OPC6 == 0 .or. OPC6 == 5
+      return .t.
+   elseif OPC6 == 1  
+      INC_SAIDA_BS()
+   elseif OPC6 == 2
+      ALT_SAIDA_BS()
+   elseif OPC6 == 3
+      CON_SAIDA_BS() 
+   elseif OPC6 == 4 
+      EXC_SAIDA_BS()
+   endif    
+
+enddo
+
 return .t.
 
 
