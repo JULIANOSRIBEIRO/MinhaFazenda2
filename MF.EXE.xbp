@@ -23,90 +23,110 @@ PRG_OUTPUTFOLDER =
 RC_OUTPUTFOLDER = 
 RUNARGUMENTS = 
 SLY_OUTPUTFOLDER = 
-STARTIN = C:\MF
-TARGETFOLDER = C:\MF
+STARTIN = C:\GS-Homologa\MF
+TARGETFOLDER = C:\GS-Homologa\MF
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_M001.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_M001.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_M099.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_M099.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_R011.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_R011.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z010.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z009.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z011.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z010.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z012.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z011.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z099.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z012.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z180.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z099.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z181.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z180.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z190.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z181.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z013.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z190.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z014.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z013.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z015.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z014.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z016.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z015.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_R012.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z016.PRG]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[C:\GS-Work\Fonte\SERIAL\MinhaFazenda\MF_Z020.PRG]
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_R012.PRG]
+MYC_FLAGS = 
+MYDEFINES = 
+MYPRG_FLAGS = 
+
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z020.PRG]
+MYC_FLAGS = 
+MYDEFINES = 
+MYPRG_FLAGS = 
+
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z023.prg]
+MYC_FLAGS = 
+MYDEFINES = 
+MYPRG_FLAGS = 
+
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z017.PRG]
+MYC_FLAGS = 
+MYDEFINES = 
+MYPRG_FLAGS = 
+
+[C:\GS-Work\Fonte\GS\MinhaFazenda\MF_Z024.prg]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
